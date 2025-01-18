@@ -1,0 +1,76 @@
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import UserCard from "../../components/UserCard/UserCard";
+
+const Classes = () => {
+  const axiosPublic = useAxiosPublic();
+
+  // State for current page
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Fetch data using useQuery with dynamic query key based on the current page
+  const {
+    data: paginatedClasses = {},
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["classes", currentPage], // Include page number in query key
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/classes?limit=6&page=${currentPage}`);
+      return res.data;
+    },
+  });
+
+  // Destructure data from API response
+  const { classes = [], totalPages = 1 } = paginatedClasses;
+
+  // Handle page changes
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      refetch(); 
+    }
+  };
+
+  return (
+    <div className="px-4">
+      <h1 className="text-xl font-bold mb-4">All Classes</h1>
+
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {classes.map((classItem) => (
+              <UserCard key={classItem._id} item={classItem} />
+            ))}
+          </div>
+
+          {/* Pagination */}
+          <div className="flex justify-center items-center mt-6">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="px-3 py-1 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded mr-2"
+            >
+              Previous
+            </button>
+            <span className="font-semibold mx-2">
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="px-3 py-1 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded"
+            >
+              Next
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default Classes;
