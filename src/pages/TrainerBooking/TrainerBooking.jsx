@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -8,10 +8,14 @@ import {
   Button,
   Radio,
 } from "@material-tailwind/react";
+import useAdmin from "../../hooks/useAdmin";
+import useTrainer from "../../hooks/useTrainer";
 
 const TrainerBooked = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isAdmin] = useAdmin();
+  const [isTrainer] = useTrainer();
 
   // Retrieve data passed from the Trainer Details page
   const { trainer, selectedSlot } = location.state || {};
@@ -93,7 +97,6 @@ const TrainerBooked = () => {
           </div>
         </CardHeader>
 
-     
         <CardBody>
           <Typography
             variant="h6"
@@ -142,96 +145,19 @@ const TrainerBooked = () => {
           </Button>
         </CardBody>
       </Card>
+      {
+        isAdmin || isTrainer ?" " : <div>
+        <Link to="/betrainer">
+          <Button> Be a Trainer</Button>
+        </Link>
+      </div>
+        
+      }
     </div>
   );
 };
 
 export default TrainerBooked;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import { useLocation, useNavigate } from "react-router-dom";
 // import {

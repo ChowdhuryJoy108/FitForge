@@ -1,29 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Input, Textarea, Button } from '@material-tailwind/react'; // Material Tailwind components
 import Select from 'react-select'; // React Select
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
-const trainers = [
-  { trainerId: 'trainer01', name: 'Alice Johnson' },
-  { trainerId: 'trainer02', name: 'John Doe' },
-  { trainerId: 'trainer03', name: 'Jane Smith' }
-];
+// const trainers = [
+//   { trainerId: 'trainer01', name: 'Alice Johnson' },
+//   { trainerId: 'trainer02', name: 'John Doe' },
+//   { trainerId: 'trainer03', name: 'Jane Smith' }
+// ];
+
 
 const CreateClass = () => {
   // Initialize useForm
   const { register, handleSubmit, control, formState: { errors } } = useForm();
+  const [availableTrainers, setAvailableTrainers] = useState([])
+  const axiosPublic = useAxiosPublic();
+    const { data: trainers = [], } = useQuery({
+      queryKey: ["trainers"],
+      queryFn: async () => {
+        const res = await axiosPublic.get("/trainers");
+        return res.data;
+      },
+    }); 
+ 
+    // const filteredTrainers = trainers.map(trainer => )
+    const { data: allClasses = [], } = useQuery({
+      queryKey: ["allClasses"],
+      queryFn: async () => {
+        const res = await axiosPublic.get("/allClasses");
+        return res.data;
+      },
+    }); 
 
   // Trainer options for react-select dropdown (use trainerId as value)
   const trainerOptions = trainers.map((trainer) => ({
-    label: trainer.name,
-    value: trainer.trainerId
+    label: trainer.trainerId,
+    value: trainer.name
   }));
+
+  const classOptions = allClasses.map((classname) => ({
+    label: classname.name,
+    value: classname._id
+  }));
+
+
 
   // Handle form submission
   const onSubmit = (data) => {
     console.log(data);  // Log the form data
     // Here you will send the `data` to the backend to store it in your database
   };
+
+  
 
   return (
     <div className="container mx-auto p-4">
@@ -35,12 +65,20 @@ const CreateClass = () => {
         {/* Class Name */}
         <div className="flex flex-col">
           <label className="font-semibold mb-2">Class Name</label>
-          <Input
-            type="text"
-            {...register('name', { required: 'Class name is required' })}
-            error={errors.name ? true : false}
+          <Controller
+            control={control}
+            name="classes" 
+            rules={{ required: 'At least one class must be selected' }}
+            render={({ field }) => (
+              <Select
+                
+                options={classOptions}
+                {...field}
+                className={errors.classes ? 'border-red-500' : ''}
+              />
+            )}
           />
-          {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+          {errors.classes && <p className="text-red-500 text-sm">{errors.classes.message}</p>}
         </div>
 
         {/* Class Description */}
@@ -92,10 +130,11 @@ const CreateClass = () => {
           />
           {errors.trainers && <p className="text-red-500 text-sm">{errors.trainers.message}</p>}
         </div>
+       
 
         {/* Submit Button */}
         <div className="flex justify-center mt-6">
-          <Button type="submit" color="blue" className="w-full md:w-1/3">
+          <Button type="submit" color="black" className="w-full md:w-1/3">
             Create Class
           </Button>
         </div>

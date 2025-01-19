@@ -12,6 +12,12 @@ import Payment from '../pages/Payment/Payment';
 import CreateClass from '../components/CreateClass/CreateClass';
 import Dashboard from '../layouts/Dashboard';
 import Users from '../components/Users/Users';
+import BeATrainerForm from '../components/BeATrainerForm/BeATrainerForm';
+import Applications from '../components/Applications/Applications';
+import CreateForumPost from '../components/CreateForumPost/CreateForumPost';
+import ForumPosts from '../components/ForumPosts/ForumPosts';
+import ForumPage from '../pages/ForumPage/ForumPage';
+import PostDetails from '../pages/PostDetails/PostDetails';
 
 const router = createBrowserRouter([
     {
@@ -53,6 +59,18 @@ const router = createBrowserRouter([
             {
                 path:'createClass',
                 element:<CreateClass />
+            },
+            {
+                path:'betrainer',
+                element:<BeATrainerForm />
+            },
+            {
+                path:'forum',
+                element:<ForumPage />
+            },
+            {
+                path:'/forum/:postId',
+                element:<PostDetails />
             }
         ]
     },
@@ -61,8 +79,25 @@ const router = createBrowserRouter([
         element:<Dashboard />,
         children:[
             {
-                path:"/dashboard/users",
+                path:"/dashboard/allUsers",
                 element:<Users />
+            },
+            {
+                path:"/dashboard/createClass",
+                element:<CreateClass />
+            },
+            {
+                path:"/dashboard/applications",
+                element:<Applications />
+            },
+            {
+                path:"/dashboard/createForumPost",
+                element:<CreateForumPost />
+            },
+            {
+                path:"/dashboard/forumPosts",
+                element:<ForumPosts />
+         
             }
         ]
     }

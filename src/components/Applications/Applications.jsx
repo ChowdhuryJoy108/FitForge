@@ -1,43 +1,50 @@
-import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Button, Card, Typography } from "@material-tailwind/react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
-const TABLE_HEAD = [ "Name", "Email", "Role", ""];
-const Users = () => {
-  const axiosSecure = useAxiosSecure();
-  const { data: users = [], refetch } = useQuery({
-    queryKey: ["allUsers"],
+const TABLE_HEAD = ["Applicant Name", "Email", "Experience", ""];
+
+const Applications = () => {
+  const axiosPublic = useAxiosPublic();
+  const { data: applications = [], refetch } = useQuery({
+    queryKey: ["trainer-applications"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/allUsers");
+      const res = await axiosPublic.get("/trainer-applications");
       return res.data;
     },
   });
 
-  const [allUsers, setAllUsers] = useState([]);
+  const [remainingApplications, setRemainingApplications] = useState([]);
 
   useEffect(() => {
-    setAllUsers(users);
-  }, [users]);
+    setRemainingApplications(applications);
+  }, [applications]);
 
-  const handleDeleteUser = (userId) =>{
-    axiosSecure.delete(
-      `/allUsers/${userId}`
+  const handleApproveApplication = (applicationId) => {
+    console.log(applicationId);
+    const res = axiosPublic.post(
+      `/trainer-applications/approve/${applicationId}`
     );
-    setAllUsers(
-      users.filter((app) => app._id !== userId)
+    alert(`Trainer approved!`);
+    setRemainingApplications(
+      applications.filter((app) => app._id !== applicationId)
+    );
+    refetch();
+  };
+
+  const handleRejectApplication = (applicationId) =>{
+    console.log(applicationId)
+    axiosPublic.delete(
+      `/trainer-applications/reject/${applicationId}`
+    );
+    setRemainingApplications(
+      applications.filter((app) => app._id !== applicationId)
     );
     refetch();
   }
-
-
-  console.log(allUsers)
   return (
-    <>
-      <div className="text-center text-4xl my-4">
-        <h1>ALL USERS</h1>
-      </div>
-      
+    <div>
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
@@ -59,9 +66,9 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {allUsers.map(
-              ({ _id, name, email, role }, index) => {
-                const isLast = index === allUsers.length - 1;
+            {remainingApplications.map(
+              ({ _id, name, email, yearsOfExperience }, index) => {
+                const isLast = index === remainingApplications.length - 1;
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
@@ -92,25 +99,29 @@ const Users = () => {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {role}
+                        {yearsOfExperience}
                       </Typography>
                     </td>
-                    <td className={classes}>
+                    <td className={`${classes} bg-blue-gray-50/50`}>
                       <Button
+                        as="a"
+                        href="#"
                         variant="small"
                         color="blue-gray"
-                        className="font-normal mr-2"
+                        className="font-medium"
+                        onClick={() => handleApproveApplication(_id)}
                       >
-                        make admin
+                        approve
                       </Button>
-
                       <Button
+                        as="a"
+                        href="#"
                         variant="small"
                         color="blue-gray"
-                        className="font-normal"
-                        onClick={()=>handleDeleteUser(_id)}
+                        className="font-medium mx-2"
+                        onClick={()=>handleRejectApplication(_id)}
                       >
-                        delete
+                        Reject
                       </Button>
                     </td>
                   </tr>
@@ -120,8 +131,8 @@ const Users = () => {
           </tbody>
         </table>
       </Card>
-    </>
+    </div>
   );
 };
 
-export default Users;
+export default Applications;
