@@ -6,16 +6,16 @@ import UserCard from "../../components/UserCard/UserCard";
 const Classes = () => {
   const axiosPublic = useAxiosPublic();
 
-  // State for current page
+  
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Fetch data using useQuery with dynamic query key based on the current page
+  
   const {
     data: paginatedClasses = {},
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["classes", currentPage], // Include page number in query key
+    queryKey: ["classes", currentPage],
     queryFn: async () => {
       const res = await axiosPublic.get(`/classes?limit=6&page=${currentPage}`);
       return res.data;

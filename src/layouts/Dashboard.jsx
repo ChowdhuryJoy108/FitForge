@@ -25,7 +25,10 @@ const Dashboard = () => {
             </>
           ): <> 
              <NavLink to="/">Home</NavLink>
+             <NavLink to="/dashboard/Classes">Classes</NavLink>
              <NavLink to="/dashboard/forumPosts">Forum Posts</NavLink>
+             <NavLink to="/dashboard/createForumPost">Create Forum post</NavLink>
+             <NavLink to="/dashboard/addNewSlots">Add New Slots</NavLink>
              <NavLink to="/dashboard/createForumPost">Create Forum post</NavLink>
           </>
           }

@@ -3,21 +3,27 @@ import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 const CreateForumPost = () => {
   //   const [forums, setForums] = useState([]);
   const {user} = useAuth()
   console.log(user.email)
   const axiosSecure = useAxiosSecure()
-  const [newPost, setNewPost] = useState({ title: "", description: "" });
+  const [newPost, setNewPost] = useState({ title: "", description: "", imageUrl: "" });
 
   const handleAddPost = async () => {
     if (!newPost.title || !newPost.description) {
-      alert("Title and description are required.");
+      Swal.fire({
+        title: "Opps!",
+        text: "Title and description are required.",
+        icon: "error"
+      });
+    
       return;
     }
 
     try {
-        console.log("inside try", user.email)
+       
       await axiosSecure.post("/forumPost", {
         email: user.email,
         ...newPost,
@@ -26,9 +32,13 @@ const CreateForumPost = () => {
         createdAt: new Date(),
       });
     //   setForums((prev) => [response.data, ...prev]); // Add the new post to the list
-      setNewPost({ title: "", description: "" }); // Reset the form
+      setNewPost({ title: "", description: "", imageUrl: "" }); // Reset the form
     } catch (error) {
-      console.error("Failed to add forum post:", error);
+      Swal.fire({
+        title: "Opps!",
+        text: "Failed to add forum post.",
+        icon: "error"
+      });
     }
   };
   return (
@@ -42,6 +52,12 @@ const CreateForumPost = () => {
             label="Title"
             value={newPost.title}
             onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+          />
+           <Input
+            label="Image URL"
+            type="url"
+            value={newPost.imageUrl}
+            onChange={(e) => setNewPost({ ...newPost, imageUrl: e.target.value })}
           />
           <Textarea
             label="Description"

@@ -54,7 +54,7 @@ const BeATrainerForm = () => {
         availableSlots: data.availableSlots.map((slot) => slot.value),
         createdAt: new Date(),
       };
-      await axios.post("http://localhost:5000/api/apply", formattedData);
+      await axios.post("http://localhost:5000/applyTrainer", formattedData);
       alert("Application submitted successfully!");
       reset();
     } catch (error) {

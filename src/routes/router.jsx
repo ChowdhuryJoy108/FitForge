@@ -18,6 +18,7 @@ import CreateForumPost from '../components/CreateForumPost/CreateForumPost';
 import ForumPosts from '../components/ForumPosts/ForumPosts';
 import ForumPage from '../pages/ForumPage/ForumPage';
 import PostDetails from '../pages/PostDetails/PostDetails';
+import AddNewSlots from '../components/AddNewSlots/AddNewSlots';
 
 const router = createBrowserRouter([
     {
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
                 path:"/dashboard/forumPosts",
                 element:<ForumPosts />
          
+            },
+            {
+                path:"/dashboard/addNewSlots",
+                element:<AddNewSlots />
             }
         ]
     }

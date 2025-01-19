@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import {
   Card,
@@ -8,22 +7,23 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const TrainerDetails = () => {
   const { trainerId } = useParams();
   const navigate = useNavigate()
-  console.log(trainerId);
-  const axiosPublic = useAxiosPublic();
+
+  const axiosSecure = useAxiosSecure();
 
   const { data: trainer = {} } = useQuery({
     queryKey: ["trainer", trainerId],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/trainer/${trainerId}`);
+      const res = await axiosSecure.get(`/trainer/${trainerId}`);
       return res.data;
     },
   });
 
-  console.log(trainer);
+ 
 
 
   const {

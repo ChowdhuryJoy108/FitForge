@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { Input, Textarea, Button } from '@material-tailwind/react'; // Material Tailwind components
 import Select from 'react-select'; // React Select
-import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
 // const trainers = [
@@ -16,11 +16,11 @@ const CreateClass = () => {
   // Initialize useForm
   const { register, handleSubmit, control, formState: { errors } } = useForm();
   const [availableTrainers, setAvailableTrainers] = useState([])
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
     const { data: trainers = [], } = useQuery({
       queryKey: ["trainers"],
       queryFn: async () => {
-        const res = await axiosPublic.get("/trainers");
+        const res = await axiosSecure.get("/trainers");
         return res.data;
       },
     }); 
@@ -29,12 +29,12 @@ const CreateClass = () => {
     const { data: allClasses = [], } = useQuery({
       queryKey: ["allClasses"],
       queryFn: async () => {
-        const res = await axiosPublic.get("/allClasses");
+        const res = await axiosSecure.get("/allClasses");
         return res.data;
       },
     }); 
 
-  // Trainer options for react-select dropdown (use trainerId as value)
+
   const trainerOptions = trainers.map((trainer) => ({
     label: trainer.trainerId,
     value: trainer.name

@@ -1,17 +1,17 @@
-import React from 'react';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
+
 import { useQuery } from '@tanstack/react-query';
 import PostCard from '../../components/PostCard/PostCard';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const ForumPage = () => {
 
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
 
     const { data: forumPosts = [], refetch } = useQuery({
         queryKey: ["forumPosts"],
         queryFn: async () => {
         
-          const res = await axiosPublic.get('/forumPosts');
+          const res = await axiosSecure.get('/forumPosts');
           console.log(res.data)
           return res.data;
         

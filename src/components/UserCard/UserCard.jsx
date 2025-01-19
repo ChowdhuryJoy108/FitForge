@@ -9,18 +9,18 @@ import {
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UserCard = ({ item }) => {
   const [classTrainers, setClassTrainers] = useState([]);
   const { name, description, additionalDetails, trainers } = item;
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const fetchTrainers = async () => {
       try {
         const trainerRequests = trainers.map(async (trainerId) => {
-          const response = await axiosPublic.get(`/class/${trainerId}`);
+          const response = await axiosSecure.get(`/class/${trainerId}`);
           return response.data;
         });
 
