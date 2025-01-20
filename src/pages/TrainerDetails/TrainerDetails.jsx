@@ -38,9 +38,10 @@ const TrainerDetails = () => {
   } = trainer;
 
 
-  const handleSlotClick =(slot) =>{
+  const handleSlotClick =(slot, day) =>{
+    console.log(slot, day)
     navigate("/trainer-booked", {
-        state: { trainer, selectedSlot: slot },
+        state: { trainer, selectedSlot: slot, day: day },
       });
   }
 
@@ -75,14 +76,15 @@ const TrainerDetails = () => {
           <div className="grid grid-cols-2 gap-4">
             {availableSlots.length > 0 ? (
               availableSlots.map((slot, index) => (
-                <Button
+                slot.days.map(day => <Button
                   key={index}
-                  onClick={() => handleSlotClick(slot)}
+                  onClick={() => handleSlotClick(slot,day)}
                   variant="gradient"
                   className="w-full"
                 >
-                  {slot.time}
-                </Button>
+                  {day}-{slot.slotTime}
+                </Button>)
+               
               ))
             ) : (
               <Typography color="gray" className="col-span-2">

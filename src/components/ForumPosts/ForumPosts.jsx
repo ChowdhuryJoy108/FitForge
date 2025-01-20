@@ -42,8 +42,8 @@ const ForumPosts = () => {
   const handleDeletePost = async (postId) => {
     console.log(postId);
     try {
-      await axiosSecure.delete(`/forumPost/${postId}`); // Send DELETE request
-      setPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId)); // Remove the post from state
+      await axiosSecure.delete(`/forumPost/${postId}`); 
+      setPosts((prevPosts) => prevPosts.filter((post) => post._id !== postId)); 
       alert("Post deleted successfully.");
     } catch (error) {
       console.error("Failed to delete post:", error);

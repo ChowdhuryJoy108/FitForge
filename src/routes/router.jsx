@@ -19,6 +19,10 @@ import ForumPosts from '../components/ForumPosts/ForumPosts';
 import ForumPage from '../pages/ForumPage/ForumPage';
 import PostDetails from '../pages/PostDetails/PostDetails';
 import AddNewSlots from '../components/AddNewSlots/AddNewSlots';
+import TrainerClasses from '../components/TrainerClasses/TrainerClasses';
+import ManageSlots from '../components/ManageSlots/ManageSlots';
+import AllSubcribers from '../components/AllSubcribers/AllSubcribers';
+
 
 const router = createBrowserRouter([
     {
@@ -103,7 +107,21 @@ const router = createBrowserRouter([
             {
                 path:"/dashboard/addNewSlots",
                 element:<AddNewSlots />
+            },
+            {
+                path:"/dashboard/trainerClasses",
+                element:<TrainerClasses />
+            },
+            {
+                path:"/dashboard/manageSlots",
+                element:<ManageSlots />
+            },
+            {
+                path:'/dashboard/subscribers',
+                element:<AllSubcribers />
             }
+            
+
         ]
     }
 ])

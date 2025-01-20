@@ -1,11 +1,10 @@
+import React, { useEffect, useState } from 'react';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAuth from '../../hooks/useAuth';
+import TrainerClass from '../TrainerClass/TrainerClass';
 
-import useAuth from "../../hooks/useAuth";
-import { useEffect, useState } from "react";
-import AddNewSlotsForm from "../AddNewSlotsForm/AddNewSlotsForm";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-
-const AddNewSlots = () => {
-  const { user } = useAuth();
+const TrainerClasses = () => {
+    const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [trainer , setTrainer] = useState({})
 
@@ -25,14 +24,12 @@ const AddNewSlots = () => {
     }
   }, [user]);
 
-  console.log(trainer)
 
-
-  return (
-  <div>
-    <AddNewSlotsForm key={trainer._id} trainer={trainer} />
-  </div>
-  );
+    return (
+        <div>
+           <TrainerClass trainerId={trainer.trainerId} />
+        </div>
+    );
 };
 
-export default AddNewSlots;
+export default TrainerClasses;

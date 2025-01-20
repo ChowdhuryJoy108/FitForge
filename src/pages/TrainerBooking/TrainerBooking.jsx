@@ -18,8 +18,10 @@ const TrainerBooked = () => {
   const [isTrainer] = useTrainer();
 
   // Retrieve data passed from the Trainer Details page
-  const { trainer, selectedSlot } = location.state || {};
+  const { trainer, selectedSlot, day } = location.state || {};
   const { name, profileImage, specialization = [] } = trainer || {};
+
+  console.log(selectedSlot, day)
 
   // Membership plan details
   const membershipPlans = [
@@ -65,7 +67,7 @@ const TrainerBooked = () => {
 
   return (
     <div className="container mx-auto p-6">
-      {/* Trainer and Slot Information */}
+      
       <Card className="w-full max-w-[48rem] mx-auto shadow-lg">
         <CardHeader
           shadow={false}
@@ -92,7 +94,7 @@ const TrainerBooked = () => {
               Selected Slot
             </Typography>
             <Typography variant="h6" color="blue-gray">
-              {selectedSlot?.time || "No slot selected"}
+              {day}-{selectedSlot?.slotTime || "No slot selected"}
             </Typography>
           </div>
         </CardHeader>

@@ -30,6 +30,21 @@ const Users = () => {
     refetch();
   }
 
+  const handleMakeAdmin = async (id) => {
+    console.log(id)
+    try {
+      await axiosSecure.patch(`/make-admin/${id}`);
+      setAllUsers(
+        allUsers.map((user) =>
+          user._id === id ? { ...user, role: "admin" } : user
+        )
+      );
+      refetch();
+    } catch (error) {
+      console.error("Error making user admin:", error);
+    }
+  };
+
 
   console.log(allUsers)
   return (
@@ -100,6 +115,7 @@ const Users = () => {
                         variant="small"
                         color="blue-gray"
                         className="font-normal mr-2"
+                        onClick={()=>handleMakeAdmin(_id)}
                       >
                         make admin
                       </Button>

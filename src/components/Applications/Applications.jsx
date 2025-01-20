@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Typography } from "@material-tailwind/react";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const TABLE_HEAD = ["Applicant Name", "Email", "Experience", ""];
 
 const Applications = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: applications = [], refetch } = useQuery({
     queryKey: ["trainer-applications"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/trainer-applications");
+      const res = await axiosSecure.get("/trainer-applications");
       return res.data;
     },
   });
@@ -23,7 +24,7 @@ const Applications = () => {
 
   const handleApproveApplication = (applicationId) => {
     console.log(applicationId);
-    const res = axiosPublic.post(
+    const res = axiosSecure.post(
       `/trainer-applications/approve/${applicationId}`
     );
     alert(`Trainer approved!`);
@@ -35,7 +36,7 @@ const Applications = () => {
 
   const handleRejectApplication = (applicationId) =>{
     console.log(applicationId)
-    axiosPublic.delete(
+    axiosSecure.delete(
       `/trainer-applications/reject/${applicationId}`
     );
     setRemainingApplications(
