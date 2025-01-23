@@ -56,7 +56,7 @@ const Navigationbar = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <NavLink to="/allTrainers" className="flex items-center">
+        <NavLink to="/trainers" className="flex items-center">
           All Trainers
         </NavLink>
       </Typography>
