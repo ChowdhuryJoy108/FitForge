@@ -49,7 +49,7 @@ const router = createBrowserRouter([
                 element:<Classes />
             },
             {
-                path:'trainers',
+                path:'allTrainers',
                 element:<Trainers />
             },
             {

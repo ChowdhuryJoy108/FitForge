@@ -56,11 +56,11 @@ const Navigationbar = () => {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <NavLink to="/trainers" className="flex items-center">
+        <NavLink to="/allTrainers" className="flex items-center">
           All Trainers
         </NavLink>
       </Typography>
-      
+
       <Typography
         as="li"
         variant="small"
@@ -81,7 +81,6 @@ const Navigationbar = () => {
           Dashboard
         </NavLink>
       </Typography>
-      
     </ul>
   );
   return (

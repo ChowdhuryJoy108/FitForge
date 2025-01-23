@@ -1,12 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import UserCard from "../../components/UserCard/UserCard";
+import ClassCard from "../../components/ClassCard/ClassCard";
 
 const Classes = () => {
   const axiosPublic = useAxiosPublic();
-
-  
   const [currentPage, setCurrentPage] = useState(1);
 
   
@@ -22,10 +20,8 @@ const Classes = () => {
     },
   });
 
-  // Destructure data from API response
   const { classes = [], totalPages = 1 } = paginatedClasses;
-
-  // Handle page changes
+  
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -43,7 +39,8 @@ const Classes = () => {
         <>
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {classes.map((classItem) => (
-              <UserCard key={classItem._id} item={classItem} />
+              <ClassCard
+               key={classItem._id} item={classItem} />
             ))}
           </div>
 

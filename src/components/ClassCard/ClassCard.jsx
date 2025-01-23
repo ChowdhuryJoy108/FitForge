@@ -8,10 +8,10 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const UserCard = ({ item }) => {
+const ClassCard = ({ item }) => {
 
   const [classTrainers, setClassTrainers] = useState([]);
   const { name, description, image, additionalDetails, trainers, classId } =
@@ -95,4 +95,4 @@ const UserCard = ({ item }) => {
   );
 };
 
-export default UserCard;
+export default ClassCard;
