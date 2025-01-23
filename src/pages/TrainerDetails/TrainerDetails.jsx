@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
   Card,
@@ -9,13 +9,19 @@ import {
 } from "@material-tailwind/react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import useAdmin from "../../hooks/useAdmin";
+import useTrainer from "../../hooks/useTrainer";
+import { FaArrowTurnDown } from "react-icons/fa6";
+import { MdContactMail } from "react-icons/md";
 
 const TrainerDetails = () => {
   const { trainerId } = useParams();
+  const [isAdmin] = useAdmin();
+  const [isTrainer] = useTrainer();
   const location = useLocation();
   const navigate = useNavigate();
   const { classId } = location.state || {};
-  console.log(classId);
 
   const axiosSecure = useAxiosSecure();
 
@@ -33,7 +39,7 @@ const TrainerDetails = () => {
     profileImage,
     bio,
     yearsOfExperience,
-
+    email,
     availableSlots = [],
     additionalInfo,
   } = trainer;
@@ -68,8 +74,15 @@ const TrainerDetails = () => {
 
   return (
     <div className="px-2">
-      <h1>{trainerId}</h1>
-      <Card className="w-full flex flex-col max-w-6xl mx-auto lg:flex-row">
+      <SectionTitle
+        title={
+          "Meet Your Fitness Trainer – Strength, Endurance, and Wellness Expert"
+        }
+        subtitle={
+          "Discover a dedicated fitness trainer who tailors personalized workout plans to help you build strength, improve endurance, stay motivated, and achieve your ultimate health goals."
+        }
+      />
+      <Card className="w-full mb-[50px] flex flex-col max-w-6xl mx-auto lg:flex-row">
         <CardHeader
           shadow={false}
           floated={false}
@@ -85,6 +98,9 @@ const TrainerDetails = () => {
           <Typography variant="h6" color="gray" className="mb-4 uppercase">
             {name}
           </Typography>
+          <Typography  color="gray" className="mb-4 flex items-center">
+            <MdContactMail className="text-xl mr-4" /> {email}
+          </Typography>
           <Typography variant="h4" color="blue-gray" className="mb-2">
             {bio}
           </Typography>
@@ -92,8 +108,19 @@ const TrainerDetails = () => {
             {additionalInfo}
           </Typography>
           <Typography color="gray" className="mb-8 font-normal">
-            Session Time : {availableSlots[0]?.slotDuration} minutes.
+            Years of Experience : {yearsOfExperience}
           </Typography>
+          <Typography color="gray" className="flex items-center mb-4 font-normal">
+           Specialized in <FaArrowTurnDown className="text-2xl ml-4" />
+          </Typography>
+          <div className="grid grid-cols-2 gap-4 mb-4">
+
+            {specialization.map((sp, index) => 
+              <Typography key={index} color="gray" className="bg-[#eceff1] text-center py-2 font-bold rounded-xl">
+                {sp}
+              </Typography>
+            )}
+          </div>
           <div className="grid grid-cols-2 gap-4">
             {availableSlots.length > 0 ? (
               availableSlots.map((slot, index) =>
@@ -128,6 +155,28 @@ const TrainerDetails = () => {
           </div>
         </CardBody>
       </Card>
+
+      <div className="flex flex-col items-center gap-2 bg-blue-gray-100 my-8 py-4 rounded-lg">
+        <SectionTitle
+          title={
+            "Become a Fitness Trainer – Inspire, Train, and Transform Lives"
+          }
+          subtitle={
+            "Turn your passion for fitness into a career by helping others achieve their health and wellness goals."
+          }
+        />
+        <div>
+          {isAdmin || isTrainer ? (
+            " "
+          ) : (
+            <div>
+              <Link to="/betrainer">
+                <Button> Be a Trainer</Button>
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

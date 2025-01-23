@@ -307,7 +307,7 @@ const BeATrainerForm = () => {
             )}
           </div>
         ))}
-        <Button type="button" color="blue" onClick={handleAddSlot}>
+        <Button type="button" color="black" onClick={handleAddSlot}>
           Add Another Slot
         </Button>
       </div>

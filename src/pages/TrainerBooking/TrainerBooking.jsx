@@ -147,14 +147,14 @@ const TrainerBooked = () => {
           </Button>
         </CardBody>
       </Card>
-      {
+      {/* {
         isAdmin || isTrainer ?" " : <div>
         <Link to="/betrainer">
           <Button> Be a Trainer</Button>
         </Link>
       </div>
         
-      }
+      } */}
     </div>
   );
 };
