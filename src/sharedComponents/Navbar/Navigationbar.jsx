@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 const Navigationbar = () => {
   const [openNav, setOpenNav] = useState(false);
   const { user, logOut } = useAuth();
@@ -23,9 +24,20 @@ const Navigationbar = () => {
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        alert("successfully Logged out!");
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: "successfully Logged out!",
+        });
       })
-      .catch((err) => alert("Couldn't Log out"));
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
+          footer: "Try again after sometimes!",
+        });
+      });
   };
 
   const navList = (
@@ -86,7 +98,7 @@ const Navigationbar = () => {
   return (
     <div className="-m-2 mb-4 max-h-[768px]">
       {" "}
-      {/*overflow-scroll,  w-[calc(100%+48px)] commented */}
+     
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography

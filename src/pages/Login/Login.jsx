@@ -8,9 +8,8 @@ import loginAnimation from "../../assets/loginLottie/lottieLogin.json";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 
-
 const Login = () => {
-  const {signInUser} = useContext(AuthContext)
+  const { signInUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -21,41 +20,41 @@ const Login = () => {
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
-  console.log('state in the location login page', location.state)
+  console.log("state in the location login page", location.state);
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => setPasswordShown((cur) => !cur);
 
   const onSubmit = (data) => {
-    console.log("Form Submitted Data:", data);
     signInUser(data.email, data.password)
-    .then(result => {
+      .then((result) => {
         const user = result.user;
-        console.log(user);
+        
         Swal.fire({
-            title: 'User Login Successful.',
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-            }
+          icon: "success",
+          title: "Success",
+          title: "User Login Successful.",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
         });
         navigate(from, { replace: true });
-    })
-    .catch(error => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: `${error.message}`,
-        footer: 'Try again after sometimes!'
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
+          footer: "Try again after sometimes!",
+        });
       });
-    })
   };
 
   return (
     <div className="flex flex-col-reverse gap-4 lg:flex-row">
-    
       <section className="grid place-items-center px-4 sm:px-8 lg:px-16">
         <div className="w-full max-w-[24rem] md:max-w-[28rem] mx-auto bg-white shadow-lg rounded-lg p-6 sm:p-8 lg:p-10">
           {/* Header Section */}
@@ -143,7 +142,6 @@ const Login = () => {
               )}
             </div>
 
-            
             <Button
               className="rounded-md bg-gradient-to-tr from-slate-800 to-slate-700 py-2 px-4 border border-transparent text-center text-sm sm:text-base lg:text-lg text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="submit"
