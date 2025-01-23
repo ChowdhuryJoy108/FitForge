@@ -9,17 +9,11 @@ import {
   Input,
   Typography,
 } from "@material-tailwind/react";
-import useAxiosSecure from "../../hooks/useAxiosSecure"; // Assuming you're using a custom Axios hook
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const UpdateSlotModal = ({
-  open,
-  handleClose,
-  slot,
-  onUpdate,
-
-}) => {
+const UpdateSlotModal = ({ open, handleClose, slot, onUpdate }) => {
   console.log(slot);
-  const axiosSecure = useAxiosSecure(); // Your Axios instance for secure API calls
+  const axiosSecure = useAxiosSecure();
   const [formData, setFormData] = useState({
     slotName: "",
     slotTime: "",
@@ -28,54 +22,24 @@ const UpdateSlotModal = ({
     classIds: [],
   });
 
-  const [loading, setLoading] = useState(false); // To manage loading state
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (slot) {
-      console.log("Slot data:", slot); // Debugging log
-      // console.log("Trainer classes:", slot.trainerClasses); // Debugging log
-  
+      console.log("Slot data:", slot);
+
       setFormData({
         slotName: slot.slotName || "",
         slotTime: slot.slotTime || "",
         duration: slot.duration || "",
         days: Array.isArray(slot.days)
-        ? slot.days.map((day) =>
-            typeof day === "string" ? { value: day, label: day } : day
-          )
-        : [],
-         
-
-
-        // days: Array.isArray(slot.days)
-        //   ? slot.days.map((day) => ({ value: day.value, label: day.label }))
-        //   : [],
-        // classIds: Array.isArray(slot.classIds)
-        //   ? slot.classIds.map((clsId) => ({
-        //       value: clsId,
-        //       label: slot.trainerClasses?.find((cls) => cls.lebel === clsId)?.label || clsId,
-        //     }))
-        //   : [],
+          ? slot.days.map((day) =>
+              typeof day === "string" ? { value: day, label: day } : day
+            )
+          : [],
       });
     }
   }, [slot]);
-  
-
-//   useEffect(() => {
-//     if (slot) {
-//       setFormData({
-//         slotName: slot.slotName,
-//         slotTime: slot.slotTime,
-//         duration: slot.duration,
-//         days: slot.days.map((day) => ({ value: day, label: day })),
-//         classIds: slot.classIds.map((clsId) => ({
-//           value: clsId,
-//           label:
-//             trainerClasses.find((cls) => cls.value === clsId)?.label || clsId,
-//         })),
-//       });
-//     }
-//   }, [slot, trainerClasses]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
