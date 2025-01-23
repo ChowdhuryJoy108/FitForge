@@ -2,30 +2,39 @@ import React, { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import TrainerCard from "../../components/TrainerCard/TrainerCard";
+import { Helmet } from "react-helmet-async";
 
 const Trainers = () => {
   const axiosPublic = useAxiosPublic();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { data: paginatedTrainers = {},
-  isLoading, refetch } = useQuery({
+  const {
+    data: paginatedTrainers = {},
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["allTrainers", currentPage],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/allTrainers?limit=6&page=${currentPage}`);
+      const res = await axiosPublic.get(
+        `/allTrainers?limit=6&page=${currentPage}`
+      );
       return res.data;
     },
   });
 
   const { trainers = [], totalPages = 1 } = paginatedTrainers;
-  
+
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-      refetch(); 
+      refetch();
     }
   };
   return (
     <div className="px-4">
+      <Helmet>
+        <title>FitForge | Trainers</title>
+      </Helmet>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {trainers.map((trainer) => (
           <TrainerCard key={trainer._id} trainer={trainer} />

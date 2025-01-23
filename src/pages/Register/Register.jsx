@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from '../../hooks/useAxiosPublic'
+import { Helmet } from "react-helmet-async";
+
 
 const Register = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -50,11 +52,22 @@ const Register = () => {
             }
           });
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: `${error.message}`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        });
     });
   };
   return (
     <div>
+       <Helmet>
+        <title>FitForge | Register</title>
+      </Helmet>
       <section className="grid place-items-center px-4 sm:px-8 lg:px-16">
         <div className="w-full max-w-[24rem] md:max-w-[28rem] mx-auto bg-white shadow-lg rounded-lg p-6 sm:p-8 lg:p-10">
           <Typography

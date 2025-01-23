@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { Badge, Button } from "@material-tailwind/react";
+import { Helmet } from "react-helmet-async";
 
 const PostDetails = () => {
   const { postId } = useParams();
@@ -31,6 +32,9 @@ const PostDetails = () => {
   return (
     <div>
       This post Details page || {postId} {forumPost.length}
+      <Helmet>
+        <title>FitForge | ForumPost Details </title>
+      </Helmet>
       <div>
         <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg max-w-6xl mx-auto">
           <div class="p-4 flex justify-between">

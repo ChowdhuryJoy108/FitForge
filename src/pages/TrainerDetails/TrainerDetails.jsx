@@ -14,6 +14,7 @@ import useAdmin from "../../hooks/useAdmin";
 import useTrainer from "../../hooks/useTrainer";
 import { FaArrowTurnDown } from "react-icons/fa6";
 import { MdContactMail } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
 
 const TrainerDetails = () => {
   const { trainerId } = useParams();
@@ -65,7 +66,6 @@ const TrainerDetails = () => {
       });
       navigate("/classes");
     } else {
-      console.log(slot, day);
       navigate("/trainer-booked", {
         state: { trainer, selectedSlot: slot, day: day, classId: classId },
       });
@@ -74,6 +74,9 @@ const TrainerDetails = () => {
 
   return (
     <div className="px-2">
+      <Helmet>
+        <title>FitForge | Trainers Details</title>
+      </Helmet>
       <SectionTitle
         title={
           "Meet Your Fitness Trainer – Strength, Endurance, and Wellness Expert"
@@ -98,7 +101,7 @@ const TrainerDetails = () => {
           <Typography variant="h6" color="gray" className="mb-4 uppercase">
             {name}
           </Typography>
-          <Typography  color="gray" className="mb-4 flex items-center">
+          <Typography color="gray" className="mb-4 flex items-center">
             <MdContactMail className="text-xl mr-4" /> {email}
           </Typography>
           <Typography variant="h4" color="blue-gray" className="mb-2">
@@ -110,16 +113,22 @@ const TrainerDetails = () => {
           <Typography color="gray" className="mb-8 font-normal">
             Years of Experience : {yearsOfExperience}
           </Typography>
-          <Typography color="gray" className="flex items-center mb-4 font-normal">
-           Specialized in <FaArrowTurnDown className="text-2xl ml-4" />
+          <Typography
+            color="gray"
+            className="flex items-center mb-4 font-normal"
+          >
+            Specialized in <FaArrowTurnDown className="text-2xl ml-4" />
           </Typography>
           <div className="grid grid-cols-2 gap-4 mb-4">
-
-            {specialization.map((sp, index) => 
-              <Typography key={index} color="gray" className="bg-[#eceff1] text-center py-2 font-bold rounded-xl">
+            {specialization.map((sp, index) => (
+              <Typography
+                key={index}
+                color="gray"
+                className="bg-[#eceff1] text-center py-2 font-bold rounded-xl"
+              >
                 {sp}
               </Typography>
-            )}
+            ))}
           </div>
           <div className="grid grid-cols-2 gap-4">
             {availableSlots.length > 0 ? (

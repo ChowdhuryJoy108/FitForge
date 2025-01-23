@@ -2,12 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import ClassCard from "../../components/ClassCard/ClassCard";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
   const axiosPublic = useAxiosPublic();
   const [currentPage, setCurrentPage] = useState(1);
 
-  
   const {
     data: paginatedClasses = {},
     isLoading,
@@ -21,16 +21,19 @@ const Classes = () => {
   });
 
   const { classes = [], totalPages = 1 } = paginatedClasses;
-  
+
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-      refetch(); 
+      refetch();
     }
   };
 
   return (
     <div className="px-4">
+      <Helmet>
+        <title>FitForge | Classes</title>
+      </Helmet>
       <h1 className="text-xl font-bold mb-4">All Classes</h1>
 
       {isLoading ? (
@@ -40,7 +43,10 @@ const Classes = () => {
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {classes.map((classItem) => (
               <ClassCard
-               key={classItem._id} item={classItem} refetch={refetch} />
+                key={classItem._id}
+                item={classItem}
+                refetch={refetch}
+              />
             ))}
           </div>
 

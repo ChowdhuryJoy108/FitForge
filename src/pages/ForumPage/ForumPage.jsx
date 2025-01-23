@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import PostCard from "../../components/PostCard/PostCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const ForumPage = () => {
   const axiosSecure = useAxiosSecure();
@@ -13,7 +14,9 @@ const ForumPage = () => {
   } = useQuery({
     queryKey: ["allForumPosts", currentPage],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/allForumPosts?limit=4&page=${currentPage}`);
+      const res = await axiosSecure.get(
+        `/allForumPosts?limit=4&page=${currentPage}`
+      );
       return res.data;
     },
   });
@@ -23,12 +26,14 @@ const ForumPage = () => {
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-      refetch(); 
+      refetch();
     }
   };
   return (
     <div>
-      This is forum Page! {forumPosts.length}
+      <Helmet>
+        <title>FitForge | Forum </title>
+      </Helmet>
       <div className="grid gap-x-2 gap-y-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {forumPosts.map((post) => (
           <PostCard key={post._id} post={post} refetch={refetch} />

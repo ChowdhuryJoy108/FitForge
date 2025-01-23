@@ -8,22 +8,16 @@ import {
   Button,
   Radio,
 } from "@material-tailwind/react";
-import useAdmin from "../../hooks/useAdmin";
-import useTrainer from "../../hooks/useTrainer";
+
+import { Helmet } from "react-helmet-async";
 
 const TrainerBooked = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isAdmin] = useAdmin();
-  const [isTrainer] = useTrainer();
 
-  // Retrieve data passed from the Trainer Details page
   const { trainer, selectedSlot, day, classId } = location.state || {};
   const { name, profileImage, specialization = [] } = trainer || {};
 
-  console.log(selectedSlot, day, classId)
-
-  // Membership plan details
   const membershipPlans = [
     {
       type: "Basic Membership",
@@ -51,10 +45,8 @@ const TrainerBooked = () => {
     },
   ];
 
-  // State to manage selected membership
   const [selectedPlan, setSelectedPlan] = useState("");
 
-  // Handle redirection to payment page
   const handleJoinNow = () => {
     if (!selectedPlan) {
       alert("Please select a membership plan.");
@@ -67,7 +59,9 @@ const TrainerBooked = () => {
 
   return (
     <div className="container mx-auto p-6">
-      
+      <Helmet>
+        <title>FitForge | Trainer Booking</title>
+      </Helmet>
       <Card className="w-full max-w-[48rem] mx-auto shadow-lg">
         <CardHeader
           shadow={false}
@@ -147,14 +141,6 @@ const TrainerBooked = () => {
           </Button>
         </CardBody>
       </Card>
-      {/* {
-        isAdmin || isTrainer ?" " : <div>
-        <Link to="/betrainer">
-          <Button> Be a Trainer</Button>
-        </Link>
-      </div>
-        
-      } */}
     </div>
   );
 };
