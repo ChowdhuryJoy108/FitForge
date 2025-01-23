@@ -25,7 +25,7 @@ const UpdateSlotModal = ({
     slotTime: "",
     duration: "",
     days: [],
-    // classIds: [],
+    classIds: [],
   });
 
   const [loading, setLoading] = useState(false); // To manage loading state
@@ -33,15 +33,23 @@ const UpdateSlotModal = ({
   useEffect(() => {
     if (slot) {
       console.log("Slot data:", slot); // Debugging log
-      console.log("Trainer classes:", slot.trainerClasses); // Debugging log
+      // console.log("Trainer classes:", slot.trainerClasses); // Debugging log
   
       setFormData({
         slotName: slot.slotName || "",
         slotTime: slot.slotTime || "",
         duration: slot.duration || "",
         days: Array.isArray(slot.days)
-          ? slot.days.map((day) => ({ value: day, label: day }))
-          : [],
+        ? slot.days.map((day) =>
+            typeof day === "string" ? { value: day, label: day } : day
+          )
+        : [],
+         
+
+
+        // days: Array.isArray(slot.days)
+        //   ? slot.days.map((day) => ({ value: day.value, label: day.label }))
+        //   : [],
         // classIds: Array.isArray(slot.classIds)
         //   ? slot.classIds.map((clsId) => ({
         //       value: clsId,
@@ -184,7 +192,7 @@ const UpdateSlotModal = ({
             <Select
               isMulti
               name="classIds"
-              options={slot.trainerClasses.map((cls) => ({
+              options={slot.classIds.map((cls) => ({
                 value: cls.value,
                 label: cls.label || cls.value, // Ensure label is set correctly
               }))}

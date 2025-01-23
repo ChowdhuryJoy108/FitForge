@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
   Card,
@@ -11,7 +11,10 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const TrainerDetails = () => {
   const { trainerId } = useParams();
+  const location = useLocation();
   const navigate = useNavigate()
+  const {classId} = location.state || {};
+  console.log(classId)
 
   const axiosSecure = useAxiosSecure();
 
@@ -23,32 +26,28 @@ const TrainerDetails = () => {
     },
   });
 
- 
-
-
   const {
     name,
     specialization = [],
     profileImage,
     bio,
     yearsOfExperience,
-    socialIcons = {},
+
     availableSlots = [],
     additionalInfo,
   } = trainer;
 
-
-  const handleSlotClick =(slot, day) =>{
-    console.log(slot, day)
+  const handleSlotClick = (slot, day) => {
+    console.log(slot, day);
     navigate("/trainer-booked", {
-        state: { trainer, selectedSlot: slot, day: day },
-      });
-  }
+      state: { trainer, selectedSlot: slot, day: day, classId:classId },
+    });
+  };
 
   return (
     <div className="px-2">
       <h1>{trainerId}</h1>
-      <Card className="w-full flex flex-col max-w-[48rem] mx-auto lg:flex-row">
+      <Card className="w-full flex flex-col max-w-6xl mx-auto lg:flex-row">
         <CardHeader
           shadow={false}
           floated={false}
@@ -75,42 +74,35 @@ const TrainerDetails = () => {
           </Typography>
           <div className="grid grid-cols-2 gap-4">
             {availableSlots.length > 0 ? (
-              availableSlots.map((slot, index) => (
-                slot.days.map(day => <Button
-                  key={index}
-                  onClick={() => handleSlotClick(slot,day)}
-                  variant="gradient"
-                  className="w-full"
-                >
-                  {day}-{slot.slotTime}
-                </Button>)
-               
-              ))
+              availableSlots.map((slot, index) =>
+                slot.days.length > 0 ? (
+                  slot.days.map((day, dayIndex) => (
+                    <Button
+                      key={`${slot.slotId}-${dayIndex}`} // Ensure unique key for React
+                      onClick={() => handleSlotClick(slot, day)} // Pass slot and day to the handler
+                      variant="gradient"
+                      className="w-full"
+                    >
+                      {day} - {slot.slotTime}
+                    </Button>
+                  ))
+                ) : (
+                  // Render a fallback button for slots without selected days
+                  <Typography
+                    key={slot.slotId}
+                    color="red"
+                    className="col-span-2"
+                  >
+                    {slot.slotName} has no days assigned.
+                  </Typography>
+                )
+              )
             ) : (
               <Typography color="gray" className="col-span-2">
                 No available slots.
               </Typography>
             )}
           </div>
-          {/* <a href="#" className="inline-block">
-            <Button variant="text" className="flex items-center gap-2">
-              Learn More
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-                className="h-4 w-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-                />
-              </svg>
-            </Button>
-          </a> */}
         </CardBody>
       </Card>
     </div>

@@ -56,8 +56,19 @@ const Dashboard = () => {
               >
                 Users
               </NavLink>
+
               <NavLink
-                to="/dashboard/trainers"
+                to="/dashboard/allClasses"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-bold"
+                    : "text-white hover:text-gray-200"
+                }
+              >
+                classes
+              </NavLink>
+              <NavLink
+                to="/dashboard/allTrainers"
                 className={({ isActive }) =>
                   isActive
                     ? "text-white font-bold"
@@ -176,6 +187,16 @@ const Dashboard = () => {
 
           {!isAdmin && !isTrainer && (
             <>
+             <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-bold"
+                    : "text-white hover:text-gray-200"
+                }
+              >
+                Home
+              </NavLink>
               <NavLink
                 to="/dashboard/userProfile"
                 className={({ isActive }) =>

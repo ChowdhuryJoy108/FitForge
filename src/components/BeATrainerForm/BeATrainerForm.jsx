@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Input, Textarea, Button } from "@material-tailwind/react";
+import { Input, Textarea, Button, Typography } from "@material-tailwind/react";
 import Select from "react-select";
-import axios from "axios";
-import useAuth from '../../hooks/useAuth'
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const BeATrainerForm = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     handleSubmit,
     register,
@@ -13,8 +14,8 @@ const BeATrainerForm = () => {
     reset,
     formState: { errors },
   } = useForm();
-
-  const {user} = useAuth()
+  const { user } = useAuth();
+  const [availableSlots, setAvailableSlots] = useState([]);
 
   // Options for specialization
   const specializationOptions = [
@@ -25,38 +26,72 @@ const BeATrainerForm = () => {
     { value: "Cardio", label: "Cardio" },
   ];
 
-  // Options for available slots with slotDuration
-  const slotOptions = [
-    {
-      value: { time: "Monday 10:00 AM", slotDuration: 60 },
-      label: "Monday 10:00 AM (60 mins)",
-    },
-    {
-      value: { time: "Wednesday 2:00 PM", slotDuration: 60 },
-      label: "Wednesday 2:00 PM (60 mins)",
-    },
-    {
-      value: { time: "Friday 4:00 PM", slotDuration: 90 },
-      label: "Friday 4:00 PM (90 mins)",
-    },
-    {
-      value: { time: "Saturday 9:00 AM", slotDuration: 45 },
-      label: "Saturday 9:00 AM (45 mins)",
-    },
-  ];
+  // Slot data handling
+  const handleAddSlot = () => {
+    setAvailableSlots([
+      ...availableSlots,
+      { slotName: "", slotTime: "", duration: "", days: [] },
+    ]);
+  };
+
+  const handleSlotChange = (index, field, value) => {
+    const newSlots = [...availableSlots];
+    newSlots[index][field] = value;
+    setAvailableSlots(newSlots);
+  };
+
+  const handleSlotDaysChange = (index, selectedDays) => {
+    const newSlots = [...availableSlots];
+    newSlots[index].days = selectedDays;
+    setAvailableSlots(newSlots);
+  };
+
+  const validateSlots = () => {
+    return availableSlots.every(
+      (slot) =>
+        slot.slotName.trim() !== "" &&
+        slot.slotTime.trim() !== "" &&
+        slot.duration > 0 &&
+        slot.days.length > 0
+    );
+  };
 
   const onSubmit = async (data) => {
+    if (!validateSlots()) {
+      alert("Please complete all slot details before submitting.");
+      return;
+    }
+
     try {
       const formattedData = {
-        ...data,
-        status: "pending",
+        name: data.name,
+        email: data.email,
+        profileImage: data.profileImage,
         specialization: data.specialization.map((spec) => spec.value),
-        availableSlots: data.availableSlots.map((slot) => slot.value),
+        bio: data.bio,
+        yearsOfExperience: data.yearsOfExperience,
+        socialIcons: {
+          facebook: data.socialIcons.facebook,
+          instagram: data.socialIcons.instagram,
+          linkedin: data.socialIcons.linkedin,
+        },
+        availableSlots: availableSlots.map((slot, index) => ({
+          slotId: `slot${Date.now()}-${index}`, // Unique slot ID
+          slotName: slot.slotName,
+          slotTime: slot.slotTime,
+          duration: slot.duration,
+          days: slot.days.map((day) => day.value),
+          bookings: [],
+        })),
         createdAt: new Date(),
       };
-      await axios.post("http://localhost:5000/applyTrainer", formattedData);
+
+      console.log(formattedData);
+
+      await axiosPublic.post("/applyTrainer", formattedData);
       alert("Application submitted successfully!");
       reset();
+      setAvailableSlots([]);
     } catch (error) {
       console.error("Failed to submit application", error);
       alert("Failed to submit the application.");
@@ -70,41 +105,25 @@ const BeATrainerForm = () => {
     >
       <h2 className="text-2xl font-semibold text-center">Be a Trainer</h2>
 
+      {/* Name and Email */}
       <div>
         <Input
           label="Name"
-		  value={user?.displayName}
+          value={user?.displayName}
           readOnly
           {...register("name")}
           className="cursor-not-allowed"
         />
       </div>
-
-      {/* Email */}
       <div>
         <Input
           type="email"
           label="Email"
-		  value={user?.email}
+          value={user?.email}
           readOnly
           {...register("email")}
           className="cursor-not-allowed"
         />
-      </div>
-
-      <div>
-        <Input
-          type="number"
-          label="Age"
-          {...register("age", {
-            required: "Age is required",
-            valueAsNumber: true,
-          })}
-          error={errors.age && true}
-        />
-        {errors.age && (
-          <span className="text-red-500 text-sm">{errors.age.message}</span>
-        )}
       </div>
 
       {/* Profile Image */}
@@ -123,6 +142,7 @@ const BeATrainerForm = () => {
           name="specialization"
           control={control}
           defaultValue={[]}
+          rules={{ required: "At least one specialization is required" }}
           render={({ field }) => (
             <Select
               isMulti
@@ -133,11 +153,20 @@ const BeATrainerForm = () => {
             />
           )}
         />
+        {errors.specialization && (
+          <Typography color="red">{errors.specialization.message}</Typography>
+        )}
       </div>
 
       {/* Bio */}
       <div>
-        <Textarea label="Bio" {...register("bio")} />
+        <Textarea
+          label="Bio"
+          {...register("bio", { required: "Bio is required" })}
+        />
+        {errors.bio && (
+          <Typography color="red">{errors.bio.message}</Typography>
+        )}
       </div>
 
       {/* Years of Experience */}
@@ -145,8 +174,16 @@ const BeATrainerForm = () => {
         <Input
           type="number"
           label="Years of Experience"
-          {...register("yearsOfExperience", { valueAsNumber: true })}
+          {...register("yearsOfExperience", {
+            required: "Years of experience is required",
+            valueAsNumber: true,
+          })}
         />
+        {errors.yearsOfExperience && (
+          <Typography color="red">
+            {errors.yearsOfExperience.message}
+          </Typography>
+        )}
       </div>
 
       {/* Social Links */}
@@ -170,26 +207,66 @@ const BeATrainerForm = () => {
 
       {/* Available Slots */}
       <div>
-        <label className="block font-medium mb-2">Available Slots:</label>
-        <Controller
-          name="availableSlots"
-          control={control}
-          defaultValue={[]}
-          render={({ field }) => (
+        <Typography variant="small" color="blue-gray" className="mb-1">
+          Available Slots
+        </Typography>
+        {availableSlots.map((slot, index) => (
+          <div key={index} className="space-y-4">
+            <Input
+              type="text"
+              placeholder="Slot Name"
+              value={slot.slotName}
+              onChange={(e) =>
+                handleSlotChange(index, "slotName", e.target.value)
+              }
+              required
+            />
+            <Input
+              type="text"
+              placeholder="Slot Time"
+              value={slot.slotTime}
+              onChange={(e) =>
+                handleSlotChange(index, "slotTime", e.target.value)
+              }
+              required
+            />
+            <Input
+              type="number"
+              placeholder="Duration (Minutes)"
+              value={slot.duration}
+              onChange={(e) =>
+                handleSlotChange(index, "duration", e.target.value)
+              }
+              required
+            />
+            <Typography variant="small" color="blue-gray" className="mb-1">
+              Select Days
+            </Typography>
             <Select
               isMulti
-              options={slotOptions}
-              className="react-select-container"
-              classNamePrefix="react-select"
-              {...field}
+              options={[
+                { value: "Monday", label: "Monday" },
+                { value: "Tuesday", label: "Tuesday" },
+                { value: "Wednesday", label: "Wednesday" },
+                { value: "Thursday", label: "Thursday" },
+                { value: "Friday", label: "Friday" },
+              ]}
+              value={slot.days}
+              onChange={(selectedDays) =>
+                handleSlotDaysChange(index, selectedDays)
+              }
+              placeholder="Select days for this slot"
             />
-          )}
-        />
-      </div>
-
-      {/* Additional Info */}
-      <div>
-        <Textarea label="Additional Info" {...register("additionalInfo")} />
+            {slot.days.length === 0 && (
+              <Typography color="red">
+                At least one day must be selected
+              </Typography>
+            )}
+          </div>
+        ))}
+        <Button type="button" color="blue" onClick={handleAddSlot}>
+          Add Another Slot
+        </Button>
       </div>
 
       {/* Submit Button */}

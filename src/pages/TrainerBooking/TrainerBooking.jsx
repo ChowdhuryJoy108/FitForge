@@ -18,10 +18,10 @@ const TrainerBooked = () => {
   const [isTrainer] = useTrainer();
 
   // Retrieve data passed from the Trainer Details page
-  const { trainer, selectedSlot, day } = location.state || {};
+  const { trainer, selectedSlot, day, classId } = location.state || {};
   const { name, profileImage, specialization = [] } = trainer || {};
 
-  console.log(selectedSlot, day)
+  console.log(selectedSlot, day, classId)
 
   // Membership plan details
   const membershipPlans = [
@@ -61,7 +61,7 @@ const TrainerBooked = () => {
       return;
     }
     navigate("/payment", {
-      state: { trainer, selectedSlot, selectedPlan },
+      state: { trainer, selectedSlot, selectedPlan, classId },
     });
   };
 

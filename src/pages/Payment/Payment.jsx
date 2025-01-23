@@ -1,15 +1,34 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import CheckoutForm from '../../components/CheckoutForm/CheckoutForm'
 
 const Payment = () => {
-    const location = useLocation();
-    const { trainer, selectedSlot, selectedPlan } = location.state || {};
-    console.log(trainer, selectedSlot, selectedPlan)
-    return (
-        <div>
-            This is payment page!
-        </div>
-    );
+  const location = useLocation();
+  const { trainer, selectedSlot, selectedPlan, classId } = location.state || {};
+  console.log(trainer, selectedSlot, selectedPlan, classId);
+  const {price } = selectedPlan;
+
+  console.log(price)
+
+  const stripePromise = loadStripe(import.meta.env.VITE_payment_gateway_pk);
+
+  return (
+    <div>
+      This is payment page!
+      <div>
+        <Elements stripe={stripePromise}>
+            <CheckoutForm 
+            amount={price} 
+            selectedTrainer={trainer} 
+            selectedSlot={selectedSlot} 
+            classId={classId}
+            />
+        </Elements>
+      </div>
+    </div>
+  );
 };
 
 export default Payment;

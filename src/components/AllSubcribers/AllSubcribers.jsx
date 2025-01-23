@@ -57,7 +57,7 @@ const AllSubcribers = () => {
           </thead>
           <tbody>
             {allSubscribers.map(({ _id, email}, index) => {
-              const isLast = index === subscribers.length - 1;
+              const isLast = index === allSubscribers.length - 1;
               const classes = isLast
                 ? "p-4"
                 : "p-4 border-b border-blue-gray-50";

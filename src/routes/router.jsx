@@ -22,6 +22,9 @@ import AddNewSlots from '../components/AddNewSlots/AddNewSlots';
 import TrainerClasses from '../components/TrainerClasses/TrainerClasses';
 import ManageSlots from '../components/ManageSlots/ManageSlots';
 import AllSubcribers from '../components/AllSubcribers/AllSubcribers';
+import AllTrainers from '../components/AllTrainers/AllTrainers';
+import PrivateRoute from './PrivateRoute';
+import DisplayAllClasses from '../components/DisplayAllClasses/DisplayAllClasses';
 
 
 const router = createBrowserRouter([
@@ -51,15 +54,18 @@ const router = createBrowserRouter([
             },
             {
                 path:"trainer/:trainerId",
-                element:<TrainerDetails />
+                element:<PrivateRoute>
+                    <TrainerDetails />
+                    </PrivateRoute>
             },
             {
                 path:"trainer-booked",
-                element:<TrainerBooking />
+                element:<PrivateRoute><TrainerBooking /></PrivateRoute>
+              
             },
             {
                 path:'payment',
-                element:<Payment />
+                element:<PrivateRoute><Payment /></PrivateRoute>
             },
             {
                 path:'createClass',
@@ -67,7 +73,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'betrainer',
-                element:<BeATrainerForm />
+                element:<PrivateRoute><BeATrainerForm /> </PrivateRoute>
             },
             {
                 path:'forum',
@@ -75,7 +81,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/forum/:postId',
-                element:<PostDetails />
+                element:<PrivateRoute><PostDetails /></PrivateRoute>
             }
         ]
     },
@@ -119,6 +125,14 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/subscribers',
                 element:<AllSubcribers />
+            },
+            {
+                path:"/dashboard/allTrainers",
+                element:<AllTrainers />
+            },
+            {
+                path:"/dashboard/allClasses",
+                element:<DisplayAllClasses />
             }
             
 

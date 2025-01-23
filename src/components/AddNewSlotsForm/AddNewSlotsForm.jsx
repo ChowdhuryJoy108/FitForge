@@ -12,7 +12,7 @@ import {
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AddNewSlotsForm = ({ trainer }) => {
-  const { trainerId, name, specialization, yearsOfExperience, bio } = trainer;
+  const { trainerId, name, specialization, bio } = trainer;
   const axiosSecure = useAxiosSecure();
   const {
     register,
@@ -24,7 +24,7 @@ const AddNewSlotsForm = ({ trainer }) => {
   const [selectedDays, setSelectedDays] = useState([]);
   const [selectedClasses, setSelectedClasses] = useState([]);
 
-  // Fetch admin's available classes
+  // Fetch available classes for the trainer
   useEffect(() => {
     const fetchClasses = async () => {
       try {
@@ -40,7 +40,7 @@ const AddNewSlotsForm = ({ trainer }) => {
       }
     };
     fetchClasses();
-  }, []);
+  }, [axiosSecure]);
 
   // Form submission handler
   const onSubmit = async (data) => {
@@ -49,9 +49,9 @@ const AddNewSlotsForm = ({ trainer }) => {
       slotName: data.slotName,
       slotTime: data.slotTime,
       duration: data.duration,
-      days: selectedDays.map((day) => day.value),
-      classIds: selectedClasses.map((cls) => cls.value), // Map selected classes to IDs
-      bookings: [],
+      days: selectedDays.map((day) => day.value), // Extract 'value' from selectedDays
+      classIds: selectedClasses.map((cls) => cls.value), // Extract 'value' from selectedClasses
+      bookings: [], // Initialize empty bookings
     };
 
     try {
@@ -73,17 +73,12 @@ const AddNewSlotsForm = ({ trainer }) => {
         </CardHeader>
         <CardBody>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            {/* Trainer's Info (Read-Only) */}
+            {/* Trainer Info (Read-Only) */}
             <div>
               <Typography variant="small" color="blue-gray" className="mb-1">
                 Trainer Name
               </Typography>
-              <Input
-                type="text"
-                value={name}
-                readOnly
-                className="bg-gray-100"
-              />
+              <Input type="text" value={name} readOnly className="bg-gray-100" />
             </div>
             <div>
               <Typography variant="small" color="blue-gray" className="mb-1">
@@ -100,12 +95,7 @@ const AddNewSlotsForm = ({ trainer }) => {
               <Typography variant="small" color="blue-gray" className="mb-1">
                 Bio
               </Typography>
-              <Input
-                type="text"
-                value={bio}
-                readOnly
-                className="bg-gray-100"
-              />
+              <Input type="text" value={bio} readOnly className="bg-gray-100" />
             </div>
 
             {/* Select Days */}
@@ -121,9 +111,11 @@ const AddNewSlotsForm = ({ trainer }) => {
                   { value: "Wednesday", label: "Wednesday" },
                   { value: "Thursday", label: "Thursday" },
                   { value: "Friday", label: "Friday" },
+                  { value: "Saturday", label: "Saturday" },
+                  { value: "Sunday", label: "Sunday" },
                 ]}
-                value={selectedDays}
-                onChange={setSelectedDays}
+                value={selectedDays} // Ensure selectedDays structure matches { value, label }
+                onChange={(selectedOptions) => setSelectedDays(selectedOptions || [])}
                 placeholder="Select days"
                 className="basic-multi-select"
               />
@@ -144,9 +136,7 @@ const AddNewSlotsForm = ({ trainer }) => {
                 error={!!errors.slotName}
               />
               {errors.slotName && (
-                <p className="text-red-500 text-sm">
-                  {errors.slotName.message}
-                </p>
+                <p className="text-red-500 text-sm">{errors.slotName.message}</p>
               )}
             </div>
 
@@ -162,9 +152,7 @@ const AddNewSlotsForm = ({ trainer }) => {
                 error={!!errors.slotTime}
               />
               {errors.slotTime && (
-                <p className="text-red-500 text-sm">
-                  {errors.slotTime.message}
-                </p>
+                <p className="text-red-500 text-sm">{errors.slotTime.message}</p>
               )}
             </div>
 
@@ -193,9 +181,12 @@ const AddNewSlotsForm = ({ trainer }) => {
               </Typography>
               <Select
                 isMulti
-                options={classes}
+                options={classes} // Dynamically loaded classes
                 value={selectedClasses}
-                onChange={setSelectedClasses}
+                
+                onChange={(selectedOptions) =>
+                  setSelectedClasses(selectedOptions || [])
+                }
                 placeholder="Select classes"
               />
               {errors.classIds && (

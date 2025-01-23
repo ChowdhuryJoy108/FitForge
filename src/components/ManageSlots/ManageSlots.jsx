@@ -12,7 +12,7 @@ const ManageSlots = () => {
   const [trainer, setTrainer] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
   const [selectedSlot, setSelectedSlot] = useState(null);
-  const [trainerClasses, setTrainerClasses] = useState([]); // Selected slot
+  // const [trainerClasses, setTrainerClasses] = useState([]); // Selected slot
 
   // Fetch trainer data
   useEffect(() => {
@@ -21,14 +21,14 @@ const ManageSlots = () => {
         try {
           const res = await axiosSecure.get(`/specific-trainer/${user.email}`);
           setTrainer(res.data);
-          console.log(trainer?.trainerId)
-        //   const classesRes = await axiosSecure.get(`/trainer/${trainer?.trainerId}/classes`);
-        //   console.log(classesRes)
-        //   const classOptions = classesRes.data.map((cls) => ({
-        //     // value: cls.classId,
-        //     label: cls.classId,
-        //   }));
-        //   setTrainerClasses(classOptions);
+          // console.log(trainer?.trainerId);
+          //   const classesRes = await axiosSecure.get(`/trainer/${trainer?.trainerId}/classes`);
+          //   console.log(classesRes)
+          //   const classOptions = classesRes.data.map((cls) => ({
+          //     // value: cls.classId,
+          //     label: cls.classId,
+          //   }));
+          //   setTrainerClasses(classOptions);
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -39,9 +39,8 @@ const ManageSlots = () => {
     }
   }, [user]);
 
-
-  console.log(trainer)
-  console.log(trainerClasses)
+  console.log(trainer);
+  // console.log(trainerClasses);
 
   // Handle opening the modal
   const handleOpenModal = (slot) => {
@@ -143,7 +142,8 @@ const ManageSlots = () => {
                           color="blue-gray"
                           className="font-normal"
                         >
-                          {day}
+                          {typeof day === "string" ? day : day.value}{" "}
+                          {/* Support both formats */}
                         </Typography>
                       ))}
                     </td>
@@ -202,7 +202,7 @@ const ManageSlots = () => {
           handleClose={() => setIsModalOpen(false)}
           slot={selectedSlot}
           onUpdate={handleUpdateSlot}
-        //   trainerClasses={trainerClasses} // Pass trainer classes as a prop
+          //   trainerClasses={trainerClasses} // Pass trainer classes as a prop
         />
       )}
     </div>

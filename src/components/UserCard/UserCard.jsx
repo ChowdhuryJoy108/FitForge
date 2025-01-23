@@ -8,13 +8,15 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UserCard = ({ item }) => {
+  console.log(item);
   const [classTrainers, setClassTrainers] = useState([]);
-  const { name, description, additionalDetails, trainers } = item;
+  const { name, description, additionalDetails, trainers, classId } = item;
   const axiosSecure = useAxiosSecure();
+ 
 
   useEffect(() => {
     const fetchTrainers = async () => {
@@ -36,6 +38,8 @@ const UserCard = ({ item }) => {
   }, [trainers]);
 
   console.log(classTrainers);
+
+  
   return (
     <div>
       <Card className="max-w-[24rem] max-h-[450px] overflow-hidden">
@@ -63,9 +67,10 @@ const UserCard = ({ item }) => {
         <CardFooter className="flex items-center justify-between">
           <div className="flex items-center -space-x-3">
             {classTrainers.map((trainer, index) => (
-              <Link to={`/trainer/${trainer._id}`}>
+              <Link to={`/trainer/${trainer._id}`} state={{ classId }} >
                 <Typography className="mr-4">{trainer.name}</Typography>
               </Link>
+            
               // <Tooltip key={trainer.trainerId} content={trainer.name}>
               //   <Avatar
               //     size="sm"
