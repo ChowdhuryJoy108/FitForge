@@ -37,6 +37,7 @@ const CreateClass = () => {
       image: data.image,
       additionalDetails: data.additionalDetails,
       trainers: data.trainers.map((trainer) => trainer.value),
+      noOfBooking: 0,
     };
 
     try {

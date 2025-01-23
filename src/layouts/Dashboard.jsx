@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [isTrainer] = useTrainer();
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen">
+    <div className="px-2 flex flex-col lg:flex-row min-h-screen">
       {/* Sidebar */}
       <div className="bg-gray-800 w-full lg:w-64 lg:min-h-screen">
         <div className="p-4">
@@ -68,6 +68,16 @@ const Dashboard = () => {
                 classes
               </NavLink>
               <NavLink
+                to="/dashboard/createClass"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-bold"
+                    : "text-white hover:text-gray-200"
+                }
+              >
+                Add New Class
+              </NavLink>
+              <NavLink
                 to="/dashboard/allTrainers"
                 className={({ isActive }) =>
                   isActive
@@ -107,16 +117,7 @@ const Dashboard = () => {
               >
                 Create Forum Post
               </NavLink>
-              <NavLink
-                to="/dashboard/createClass"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
-                }
-              >
-                Add Class
-              </NavLink>
+              
             </>
           )}
           {isTrainer && (

@@ -83,16 +83,16 @@ const CheckoutForm = ({ amount, selectedTrainer,selectedSlot, selectedPlan,class
             const res = await axiosSecure.post('/payments', payment);
             console.log('payment saved', res.data);
          
-            if (res.data?.result?.insertedId) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Thank you for the taka paisa",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                // navigate('/dashboard/paymentHistory')
-            }
+            // if (res.data?.result?.insertedId) {
+            //     Swal.fire({
+            //         position: "top-end",
+            //         icon: "success",
+            //         title: "Thank you for the taka paisa",
+            //         showConfirmButton: false,
+            //         timer: 1500
+            //     });
+            //     // navigate('/dashboard/paymentHistory')
+            // }
 
         }
     }

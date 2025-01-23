@@ -12,11 +12,11 @@ import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UserCard = ({ item }) => {
-  console.log(item);
+
   const [classTrainers, setClassTrainers] = useState([]);
-  const { name, description, additionalDetails, trainers, classId } = item;
+  const { name, description, image, additionalDetails, trainers, classId } =
+    item;
   const axiosSecure = useAxiosSecure();
- 
 
   useEffect(() => {
     const fetchTrainers = async () => {
@@ -37,12 +37,11 @@ const UserCard = ({ item }) => {
     fetchTrainers();
   }, [trainers]);
 
-  console.log(classTrainers);
 
-  
+
   return (
     <div>
-      <Card className="max-w-[24rem] max-h-[450px] overflow-hidden">
+      <Card className="max-w-[24rem] h-[450px] flex flex-col justify-between overflow-hidden">
         <CardHeader
           floated={false}
           shadow={false}
@@ -50,36 +49,44 @@ const UserCard = ({ item }) => {
           className="m-0 h-[200px] rounded-none"
         >
           <img
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+            src={image}
             alt="ui/ux review check"
             className="h-full w-full object-cover"
           />
         </CardHeader>
-        <CardBody>
-          <Typography variant="h4" color="blue-gray">
+        <CardBody className="flex flex-col justify-start items-start flex-grow p-4">
+          <Typography variant="h4" color="blue-gray" className="truncate">
             {name}
           </Typography>
-          <Typography variant="lead" color="gray" className="mt-3 font-normal">
+          <Typography
+            variant="lead"
+            color="gray"
+            className="mt-3 font-normal line-clamp-2 text-sm"
+          >
             {description}
           </Typography>
-          <Typography className="font-normal">{additionalDetails}</Typography>
+          <Typography className="font-normal text-xs line-clamp-3 mt-2">
+            {additionalDetails}
+          </Typography>
         </CardBody>
-        <CardFooter className="flex items-center justify-between">
+        <CardFooter className="flex items-center justify-between p-4">
           <div className="flex items-center -space-x-3">
             {classTrainers.map((trainer, index) => (
-              <Link to={`/trainer/${trainer._id}`} state={{ classId }} >
-                <Typography className="mr-4">{trainer.name}</Typography>
+              <Link
+                to={`/trainer/${trainer._id}`}
+                state={{ classId }}
+                key={index}
+              >
+                <Tooltip content={trainer.name}>
+                  <Avatar
+                    size="sm"
+                    variant="circular"
+                    alt={trainer.name}
+                    src={trainer.profileImage}
+                    className="border-2 border-white hover:z-10"
+                  />
+                </Tooltip>
               </Link>
-            
-              // <Tooltip key={trainer.trainerId} content={trainer.name}>
-              //   <Avatar
-              //     size="sm"
-              //     variant="circular"
-              //     alt={trainer.name}
-              //     src={trainer.profileImage}
-              //     className="border-2 border-white hover:z-10"
-              //   />
-              // </Tooltip>
             ))}
           </div>
         </CardFooter>

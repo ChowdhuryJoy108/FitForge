@@ -161,7 +161,6 @@ const TrainerBooked = () => {
 
 export default TrainerBooked;
 
-// import { useLocation, useNavigate } from "react-router-dom";
 // import {
 //   Card,
 //   CardBody,

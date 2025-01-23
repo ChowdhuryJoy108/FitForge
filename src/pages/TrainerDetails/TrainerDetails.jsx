@@ -8,13 +8,14 @@ import {
   Button,
 } from "@material-tailwind/react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const TrainerDetails = () => {
   const { trainerId } = useParams();
   const location = useLocation();
-  const navigate = useNavigate()
-  const {classId} = location.state || {};
-  console.log(classId)
+  const navigate = useNavigate();
+  const { classId } = location.state || {};
+  console.log(classId);
 
   const axiosSecure = useAxiosSecure();
 
@@ -37,11 +38,32 @@ const TrainerDetails = () => {
     additionalInfo,
   } = trainer;
 
-  const handleSlotClick = (slot, day) => {
-    console.log(slot, day);
-    navigate("/trainer-booked", {
-      state: { trainer, selectedSlot: slot, day: day, classId:classId },
-    });
+  const handleSlotClick = (slot, day, classId) => {
+    if (!classId) {
+      Swal.fire({
+        title: "You didn't select any class! Please select one",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `,
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `,
+        },
+      });
+      navigate("/classes");
+    } else {
+      console.log(slot, day);
+      navigate("/trainer-booked", {
+        state: { trainer, selectedSlot: slot, day: day, classId: classId },
+      });
+    }
   };
 
   return (
@@ -54,7 +76,7 @@ const TrainerDetails = () => {
           className="m-0 w-full shrink-0 rounded-r-none lg:w-2/5"
         >
           <img
-            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"
+            src={profileImage}
             alt="card-image"
             className="h-full w-full object-cover"
           />
@@ -79,9 +101,10 @@ const TrainerDetails = () => {
                   slot.days.map((day, dayIndex) => (
                     <Button
                       key={`${slot.slotId}-${dayIndex}`} // Ensure unique key for React
-                      onClick={() => handleSlotClick(slot, day)} // Pass slot and day to the handler
+                      onClick={() => handleSlotClick(slot, day, classId)} // Pass slot and day to the handler
                       variant="gradient"
                       className="w-full"
+                      // disabled={!classId}
                     >
                       {day} - {slot.slotTime}
                     </Button>
