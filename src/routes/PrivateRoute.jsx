@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from "react-router";
 import useAuth from "../hooks/useAuth";
+import { Spinner } from "@material-tailwind/react";
 
 
 const PrivateRoute = ({ children }) => {
@@ -7,7 +8,7 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
 
     if(loading){
-        return <h1>Loading ....</h1>
+        return <Spinner />
     }
 
     if (user) {

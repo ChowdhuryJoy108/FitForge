@@ -9,9 +9,7 @@ const Payment = () => {
   const { trainer, selectedSlot, selectedPlan, classId } = location.state || {};
   console.log(trainer, selectedSlot, selectedPlan, classId);
   const {price } = selectedPlan;
-
-  console.log(price)
-
+  
   const stripePromise = loadStripe(import.meta.env.VITE_payment_gateway_pk);
 
   return (
@@ -24,6 +22,7 @@ const Payment = () => {
             selectedTrainer={trainer} 
             selectedSlot={selectedSlot} 
             classId={classId}
+            selectedPlan={selectedPlan}
             />
         </Elements>
       </div>

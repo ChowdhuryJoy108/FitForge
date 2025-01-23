@@ -7,8 +7,8 @@ const Dashboard = () => {
   const [isTrainer] = useTrainer();
 
   return (
-    <div className="px-2 flex flex-col lg:flex-row min-h-screen">
-      {/* Sidebar */}
+    <div className="px-2 flex flex-col h-auto lg:flex-row min-h-screen">
+
       <div className="bg-gray-800 w-full lg:w-64 lg:min-h-screen">
         <div className="p-4">
          
@@ -35,6 +35,26 @@ const Dashboard = () => {
                 }
               >
                 Home
+              </NavLink>
+              <NavLink
+                to="/dashboard/adminHome"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-bold"
+                    : "text-white hover:text-gray-200"
+                }
+              >
+                Admin Home
+              </NavLink>
+              <NavLink
+                to="/dashboard/balance"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-bold"
+                    : "text-white hover:text-gray-200"
+                }
+              >
+                Balance Informations
               </NavLink>
               <NavLink
                 to="/dashboard/subscribers"
