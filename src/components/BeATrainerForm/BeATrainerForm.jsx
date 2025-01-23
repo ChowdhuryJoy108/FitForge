@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Input, Textarea, Button, Typography } from "@material-tailwind/react";
 import Select from "react-select";
@@ -16,7 +16,29 @@ const BeATrainerForm = () => {
   } = useForm();
   const { user } = useAuth();
   const [availableSlots, setAvailableSlots] = useState([]);
+  const [classes, setClasses] = useState([]);
+  const [selectedClasses, setSelectedClasses] = useState([]);
 
+
+  // Fetch available classes for the trainer
+  useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const response = await axiosPublic.get("/allClasses");
+        setClasses(
+          response.data.map((cls) => ({
+            value: cls.classId,
+            label: cls.name,
+          }))
+        );
+      } catch (error) {
+        console.error("Error fetching classes:", error);
+      }
+    };
+    fetchClasses();
+  }, [axiosPublic]);
+
+  console.log(classes)
   // Options for specialization
   const specializationOptions = [
     { value: "Yoga", label: "Yoga" },
@@ -75,12 +97,14 @@ const BeATrainerForm = () => {
           instagram: data.socialIcons.instagram,
           linkedin: data.socialIcons.linkedin,
         },
+        
         availableSlots: availableSlots.map((slot, index) => ({
           slotId: `slot${Date.now()}-${index}`, // Unique slot ID
           slotName: slot.slotName,
           slotTime: slot.slotTime,
           duration: slot.duration,
           days: slot.days.map((day) => day.value),
+          classIds: selectedClasses.map((cls) => cls.value), 
           bookings: [],
         })),
         createdAt: new Date(),
@@ -89,6 +113,7 @@ const BeATrainerForm = () => {
       console.log(formattedData);
 
       await axiosPublic.post("/applyTrainer", formattedData);
+      
       alert("Application submitted successfully!");
       reset();
       setAvailableSlots([]);
@@ -203,6 +228,24 @@ const BeATrainerForm = () => {
           label="LinkedIn URL"
           {...register("socialIcons.linkedin")}
         />
+      </div>
+
+      <div>
+        <Typography variant="small" color="blue-gray" className="mb-1">
+          Classes
+        </Typography>
+        <Select
+          isMulti
+          options={classes} // Dynamically loaded classes
+          value={selectedClasses}
+          onChange={(selectedOptions) =>
+            setSelectedClasses(selectedOptions || [])
+          }
+          placeholder="Select classes"
+        />
+        {errors.classIds && (
+          <p className="text-red-500 text-sm">{errors.classIds.message}</p>
+        )}
       </div>
 
       {/* Available Slots */}

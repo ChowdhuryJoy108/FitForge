@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Link} from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-const ClassCard = ({ item }) => {
+const ClassCard = ({ item , refetch}) => {
 
   const [classTrainers, setClassTrainers] = useState([]);
   const { name, description, image, additionalDetails, trainers, classId } =
@@ -27,7 +27,6 @@ const ClassCard = ({ item }) => {
         });
 
         const trainerData = await Promise.all(trainerRequests);
-
         setClassTrainers(trainerData);
       } catch (error) {
         console.error("Error fetching trainers:", error);

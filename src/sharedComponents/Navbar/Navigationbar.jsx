@@ -5,11 +5,14 @@ import {
   Button,
   IconButton,
   Card,
+  Tooltip,
+  Avatar,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import Logo from '../../assets/fitforge.png'
 const Navigationbar = () => {
   const [openNav, setOpenNav] = useState(false);
   const { user, logOut } = useAuth();
@@ -98,16 +101,24 @@ const Navigationbar = () => {
   return (
     <div className="-m-2 mb-4 max-h-[768px]">
       {" "}
-     
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
-          <Typography
+        
+            <Avatar
+              size="md"
+              variant="circular"
+              alt="logo of website"
+              src={Logo}
+              className="border-2 border-white hover:z-10"
+            />
+          
+          {/* <Typography
             as="a"
             href="#"
             className="mr-4 cursor-pointer py-1.5 font-bold"
           >
             FitForge
-          </Typography>
+          </Typography> */}
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             {user ? (
@@ -125,7 +136,7 @@ const Navigationbar = () => {
                   <Button
                     variant="text"
                     size="sm"
-                    className="block lg:inline-block"
+                    className="hidden lg:inline-block"
                   >
                     <span>Log In</span>
                   </Button>
@@ -134,7 +145,7 @@ const Navigationbar = () => {
                   <Button
                     variant="gradient"
                     size="sm"
-                    className="block lg:inline-block"
+                    className="hidden lg:inline-block"
                   >
                     <span>Register</span>
                   </Button>
