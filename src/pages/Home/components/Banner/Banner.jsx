@@ -1,4 +1,5 @@
 import { Carousel, Typography, Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -29,9 +30,11 @@ const Banner = () => {
               and renews a weary spirit.
             </Typography>
             <div className="flex justify-center gap-2">
+              <Link to="/classes">
               <Button size="lg" color="white">
                 Classes
               </Button>
+              </Link>
             </div>
           </div>
         </div>

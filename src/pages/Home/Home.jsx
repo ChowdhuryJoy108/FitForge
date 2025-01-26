@@ -2,13 +2,15 @@ import { Helmet } from "react-helmet-async";
 import NewsLetter from "../../components/NewsLetter/NewsLetter";
 import Banner from "./components/Banner/Banner";
 import Testimonials from "./components/Testimonials/Testimonials";
-import HomeLottie from '../../assets/lottie/homeLottie.json'
+import HomeLottie from "../../assets/lottie/homeLottie.json";
 import Lottie from "lottie-react";
 import FeaturedClasses from "./components/FeaturedClasses/FeaturedClasses";
+import LatestForumPosts from "../../components/latestForumPosts/LatestForumPosts";
+import Teams from "../../components/Teams/Teams";
 
 const Home = () => {
   return (
-    <div>
+    <div className="px-2">
       <Helmet>
         <title>FitForge | Home</title>
       </Helmet>
@@ -19,8 +21,9 @@ const Home = () => {
       </div>
       <Banner />
       <FeaturedClasses />
-      {/* <h1>Testimonials</h1>
-            <Testimonials /> */}
+      <LatestForumPosts />
+      <Teams />
+      <Testimonials />
 
       <NewsLetter />
     </div>

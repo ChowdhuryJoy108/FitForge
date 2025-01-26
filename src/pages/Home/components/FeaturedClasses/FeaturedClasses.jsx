@@ -12,9 +12,9 @@ const FeaturedClasses = () => {
       return res.data;
     },
   });
-  console.log(classes);
 
-//   const featuredClasses = classes.slice(0, 3);
+
+
 
   return (
     <div className="my-8">
