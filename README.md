@@ -150,3 +150,11 @@ This project is a full-stack fitness website developed using the MERN (MongoDB, 
 
 ## Github Repository and Live Link 
 
+## Live Link - https://fit-forge-ac99e.web.app/
+
+## github Repository Link 01 - https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-ChowdhuryJoy108/tree/main
+
+## Github Repository Link 02 - https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-ChowdhuryJoy108
+
+## Documentation Link - https://docs.google.com/document/d/1peLQNTTwy8LqrWH1r6hw7jA5v2cZAbjYTNxDhqQUDoQ/edit?tab=t.0#heading=h.ehi5vvxeu2
+
