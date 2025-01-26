@@ -1,4 +1,4 @@
-# Fitness Website - README
+# FitForge [assignment12_category_010]
 
 ## Overview
 This project is a full-stack fitness website developed using the MERN (MongoDB, Express.js, React.js, Node.js) stack. The website provides a seamless user experience for fitness enthusiasts to browse and book trainers, participate in classes, and engage with the community.
@@ -34,18 +34,18 @@ This project is a full-stack fitness website developed using the MERN (MongoDB, 
   - Error messages for invalid credentials.
   - Toggle between login and registration pages.
 
-### Homepage
-- **Banner Section:** Displays a heading, short description, and a button redirecting to the Classes page.
-- **Featured Section:** Highlights website features through cards with titles, descriptions, and icons/images.
-- **About Section:** Provides organizational information in a visually appealing layout.
-- **Featured Classes:** Displays top six most booked classes using MongoDB's `$sort` method.
+### Homepage Implementation
+- **Banner Section:** Displayed a heading, short description, and a button redirecting to the Classes page.
+- **Featured Section:** Highlighted website features through cards with titles, descriptions, and icons/images.
+- **About Section:** Provided organizational information in a visually appealing layout.
+- **Featured Classes:** Displayed top six most booked classes using MongoDB's `$sort` method.
 - **Testimonials/Reviews:** Carousel slider for user-submitted reviews.
-- **Latest Community Posts:** Displays six recent forum posts with links for further reading.
+- **Latest Community Posts:** Displayed six recent forum posts with links for further reading.
 - **Newsletter Section:** Allows users to subscribe without logging in. Data saved to MongoDB.
-- **Team Section:** Displays trainer profiles with name, biography, expertise, and photo.
+- **Team Section:** Displayed trainer profiles with name, biography, expertise, and photo.
 
 ### All Trainers Page
-- Displays all trainer profiles with:
+- Displayed all trainer profiles with:
   - Trainer name
   - Profile image
   - Years of experience
@@ -59,7 +59,7 @@ This project is a full-stack fitness website developed using the MERN (MongoDB, 
 - **Be a Trainer Section:** Includes a CTA button redirecting to the "Become a Trainer" page.
 
 ### Trainer Booking Page
-- Displays:
+- Displayed:
   - Trainer name
   - Selected slot
   - Classes
@@ -88,21 +88,21 @@ This project is a full-stack fitness website developed using the MERN (MongoDB, 
 - Saves data to MongoDB.
 
 ### Classes Page
-- Displays all classes with:
+- Displayed all classes with:
   - Class name
   - Description
-  - Trainers specializing in the class (up to 5).
+  - Trainers specializing in the class.
 - Pagination (6 classes per page).
 
 ### Forum Page
-- Displays six posts per page with pagination.
+- Displayed six posts per page with pagination.
 - Voting system for logged-in users.
 
 ### Dashboard
 - Conditional pages based on user roles (Admin, Trainer, Member).
 
-#### Admin
-- **All Newsletter Subscribers:** Displays subscribers in a table.
+#### Admin Can 
+- **All Newsletter Subscribers:** Displayed subscribers in a table.
 - **All Trainers:**
   - View and delete trainers.
   - Change trainer role back to Member.
@@ -110,7 +110,7 @@ This project is a full-stack fitness website developed using the MERN (MongoDB, 
   - View applications.
   - Accept or reject applications.
 - **Balance Overview:**
-  - Displays total balance and last six transactions.
+  - Displayed total balance and last six transactions.
   - Chart: Total newsletter subscribers vs. paid members.
 - **Add New Class:** Form to add a new class.
 
@@ -137,57 +137,16 @@ This project is a full-stack fitness website developed using the MERN (MongoDB, 
 - **Database:** MongoDB
 - **Authentication:** Firebase
 - **Payment:** Stripe
-- **Other Libraries:** React Select, Daisy UI
+- **Other Libraries:** React Select, Metarial Tailwind, swiper, helmet, React rating,
 
 ---
 
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone [repository-url]
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd [project-directory]
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Configure environment variables:
-   - Create a `.env` file.
-   - Add the following:
-     ```env
-     REACT_APP_FIREBASE_API_KEY=[Your Firebase API Key]
-     REACT_APP_STRIPE_KEY=[Your Stripe Key]
-     MONGODB_URI=[Your MongoDB Connection URI]
-     ```
-5. Run the development server:
-   ```bash
-   npm run dev
-   ```
-6. Start the backend server:
-   ```bash
-   npm run start:backend
-   ```
 
----
 
 ## Deployment
-1. Build the frontend:
-   ```bash
-   npm run build
-   ```
-2. Deploy the backend to a hosting provider (e.g., Heroku, Render).
-3. Deploy the frontend to a hosting service (e.g., Netlify, Vercel).
 
----
+1. Deployed the frontend to a hosting service Firebasse 
 
-## Acknowledgements
-Special thanks to the creators of MERN stack technologies and the open-source community for their tools and libraries.
 
----
-
-## License
-This project is licensed under the [MIT License](LICENSE).
+## Github Repository and Live Link 
 

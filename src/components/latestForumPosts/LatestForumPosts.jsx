@@ -13,7 +13,6 @@ const LatestForumPosts = () => {
     },
   });
 
-
   return (
     <div className="my-16">
       <div>

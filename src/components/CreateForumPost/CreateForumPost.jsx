@@ -5,9 +5,8 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 const CreateForumPost = () => {
-  //   const [forums, setForums] = useState([]);
   const { user } = useAuth();
-  console.log(user.email);
+
   const axiosSecure = useAxiosSecure();
   const [newPost, setNewPost] = useState({
     title: "",
@@ -28,11 +27,15 @@ const CreateForumPost = () => {
 
     try {
       await axiosSecure.post("/forumPost", {
-        email: user.email,
-        ...newPost,
+        // email: user.email,
+        // ...newPost,
         upvotes: 0,
         downvotes: 0,
         createdAt: new Date(),
+        email: user.email,
+        title: newPost.title,
+        description: newPost.description,
+        imageUrl: newPost.imageUrl,
       });
 
       Swal.fire({
@@ -40,7 +43,7 @@ const CreateForumPost = () => {
         icon: "success",
         title: "Post successfully Added!",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
       setNewPost({ title: "", description: "", imageUrl: "" });
     } catch (error) {
