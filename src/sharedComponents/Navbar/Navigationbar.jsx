@@ -119,20 +119,25 @@ const Navigationbar = () => {
               href="#"
               className="mr-4 cursor-pointer py-1.5 font-bold"
             >
-              FitForge
+              FITFORGE
             </Typography>
           </div>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             {user ? (
-              <Button
-                onClick={handleLogOut}
-                variant="text"
-                size="sm"
-                className="hidden lg:inline-block"
-              >
-                <span>Log Out</span>
-              </Button>
+              <div className="flex items-center gap-2 ">
+                <Typography className="hidden mr-4 cursor-pointer py-1.5 font-bold lg:block">
+                  {user?.displayName}
+                </Typography>
+                <Button
+                  onClick={handleLogOut}
+                  variant="text"
+                  size="sm"
+                  className="hidden lg:inline-block"
+                >
+                  <span>Log Out</span>
+                </Button>
+              </div>
             ) : (
               <div className="flex items-center gap-x-1">
                 <Link to={"/login"}>

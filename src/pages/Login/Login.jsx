@@ -8,9 +8,10 @@ import loginAnimation from "../../assets/loginLottie/lottieLogin.json";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const Login = () => {
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser} = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -107,7 +108,7 @@ const Login = () => {
                 )}
               </div>
 
-              {/* Password Field */}
+         
               <div className="mb-6">
                 <label htmlFor="password">
                   <Typography
@@ -154,7 +155,7 @@ const Login = () => {
                 Log In
               </Button>
 
-              {/* Forgot Password */}
+        
               <div className="mt-4 flex justify-end">
                 <Typography
                   as="a"
@@ -167,11 +168,12 @@ const Login = () => {
                 </Typography>
               </div>
 
-              <Button
+              {/* <Button
                 variant="outlined"
                 size="lg"
                 className="text-xs mt-6 flex h-12 items-center justify-center gap-2 lg:text-sm"
                 fullWidth
+                onClick={googleSignIn}
               >
                 <img
                   src={`https://www.material-tailwind.com/logos/logo-google.png`}
@@ -179,8 +181,9 @@ const Login = () => {
                   className="h-6 w-6"
                 />{" "}
                 log in with Google
-              </Button>
+              </Button> */}
 
+              <SocialLogin />
             
               <Typography
                 variant="small"
