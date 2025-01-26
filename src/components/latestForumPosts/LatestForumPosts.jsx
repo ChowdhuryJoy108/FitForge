@@ -17,7 +17,7 @@ const LatestForumPosts = () => {
   return (
     <div className="my-16">
       <div>
-        <SectionTitle title={"Explore Our Lasted Discussions"} subtitle={""} />
+        <SectionTitle title={"Explore Our Latest Discussions"} subtitle={""} />
       </div>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6">
         {posts.map((post) => (

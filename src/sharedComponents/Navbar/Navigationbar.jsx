@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
-import Logo from '../../assets/fitforge.png'
+import Logo from "../../assets/fitforge.png";
 const Navigationbar = () => {
   const [openNav, setOpenNav] = useState(false);
   const { user, logOut } = useAuth();
@@ -86,16 +86,18 @@ const Navigationbar = () => {
           Forum
         </NavLink>
       </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <NavLink to="/dashboard" className="btn flex items-center">
-          Dashboard
-        </NavLink>
-      </Typography>
+      {user && user?.email && (
+        <Typography
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-normal"
+        >
+          <NavLink to="/dashboard" className="btn flex items-center">
+            Dashboard
+          </NavLink>
+        </Typography>
+      )}
     </ul>
   );
   return (
@@ -103,7 +105,7 @@ const Navigationbar = () => {
       {" "}
       <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
-        
+          <div className="flex items-center gap-2">
             <Avatar
               size="md"
               variant="circular"
@@ -111,14 +113,15 @@ const Navigationbar = () => {
               src={Logo}
               className="border-2 border-white hover:z-10"
             />
-          
-          {/* <Typography
-            as="a"
-            href="#"
-            className="mr-4 cursor-pointer py-1.5 font-bold"
-          >
-            FitForge
-          </Typography> */}
+
+            <Typography
+              as="a"
+              href="#"
+              className="mr-4 cursor-pointer py-1.5 font-bold"
+            >
+              FitForge
+            </Typography>
+          </div>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             {user ? (

@@ -28,7 +28,7 @@ const CreateClass = () => {
     value: trainer.trainerId,
   }));
 
-  // Handle form submission
+ 
   const onSubmit = async (data) => {
     const formattedData = {
       classId: `class${Math.floor(Math.random() * 10000)}`,
