@@ -1,12 +1,15 @@
 import { Carousel, Typography, Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import Banner01 from "../../../../assets/banner/banner02.jpg";
+import Banner02 from "../../../../assets/banner/banner03.png";
+import Banner03 from "../../../../assets/banner/banner04.png";
 
 const Banner = () => {
   return (
-    <Carousel className="h-[400px] rounded-xl">
+    <Carousel className="h-[600px] rounded-xl md:h-[500px] lg:h-[400px]">
       <div className="relative h-full w-full">
         <img
-          src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+          src={Banner01}
           alt="image 1"
           className="h-full w-full object-cover"
         />
@@ -15,25 +18,25 @@ const Banner = () => {
             <Typography
               variant="h1"
               color="white"
-              className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+              className="mb-4 text-xl md:text-4xl lg:text-5xl"
             >
-              The Beauty of Nature
+              Train. Transform. Thrive
             </Typography>
             <Typography
               variant="lead"
               color="white"
-              className="mb-12 opacity-80"
+              className=" text-base mb-12 opacity-80 lg:text-xl"
             >
-              It is not so much for its beauty that the forest makes a claim
-              upon men&apos;s hearts, as for that subtle something, that quality
-              of air that emanation from old trees, that so wonderfully changes
-              and renews a weary spirit.
+              Unlock your full potential with expert-guided workouts,
+              personalized fitness plans, and a supportive community. Train
+              smarter, stay motivated, and achieve your dream physique with us
+              today!
             </Typography>
             <div className="flex justify-center gap-2">
               <Link to="/classes">
-              <Button size="lg" color="white">
-                Classes
-              </Button>
+                <Button size="lg" color="white">
+                  Classes
+                </Button>
               </Link>
             </div>
           </div>
@@ -41,7 +44,7 @@ const Banner = () => {
       </div>
       <div className="relative h-full w-full">
         <img
-          src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+          src={Banner02}
           alt="image 1"
           className="h-full w-full object-cover"
         />
@@ -50,19 +53,18 @@ const Banner = () => {
             <Typography
               variant="h1"
               color="white"
-              className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+              className="mb-4 text-xl md:text-4xl lg:text-5xl"
             >
-              The Beauty of Nature
+              Stronger Every Day.
             </Typography>
             <Typography
               variant="lead"
               color="white"
-              className="mb-12 opacity-80"
+              className=" text-base mb-12 opacity-80 lg:text-xl"
             >
-              It is not so much for its beauty that the forest makes a claim
-              upon men&apos;s hearts, as for that subtle something, that quality
-              of air that emanation from old trees, that so wonderfully changes
-              and renews a weary spirit.
+              Transform your body and mind with dynamic workouts, nutrition
+              guidance, and expert coaching. Build strength, endurance, and
+              confidence with a fitness journey designed just for you.
             </Typography>
             <div className="flex justify-center gap-2">
               <Button size="lg" color="white">
@@ -74,7 +76,7 @@ const Banner = () => {
       </div>
       <div className="relative h-full w-full">
         <img
-          src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+          src={Banner03}
           alt="image 1"
           className="h-full w-full object-cover"
         />
@@ -83,19 +85,19 @@ const Banner = () => {
             <Typography
               variant="h1"
               color="white"
-              className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+              className="mb-4 text-xl md:text-4xl lg:text-5xl"
             >
-              The Beauty of Nature
+              Elevate Your Fitness.
             </Typography>
             <Typography
               variant="lead"
               color="white"
-              className="mb-12 opacity-80"
+              className="text-base mb-12  opacity-80 lg:text-xl"
             >
-              It is not so much for its beauty that the forest makes a claim
-              upon men&apos;s hearts, as for that subtle something, that quality
-              of air that emanation from old trees, that so wonderfully changes
-              and renews a weary spirit.
+              Discover a new way to train with science-backed fitness programs,
+              real-time tracking, and unwavering motivation. Join a community
+              that inspires and supports your transformation every step of the
+              way.
             </Typography>
             <div className="flex justify-center gap-2">
               <Button size="lg" color="white">

@@ -33,7 +33,6 @@ const Login = () => {
 
         Swal.fire({
           icon: "success",
-          title: "Success",
           title: "User Login Successful.",
           showClass: {
             popup: "animate__animated animate__fadeInDown",
@@ -62,7 +61,7 @@ const Login = () => {
       <div className="flex flex-col-reverse gap-4 lg:flex-row">
         <section className="grid place-items-center px-4 sm:px-8 lg:px-16">
           <div className="w-full max-w-[24rem] md:max-w-[28rem] mx-auto bg-white shadow-lg rounded-lg p-6 sm:p-8 lg:p-10">
-            {/* Header Section */}
+         
             <Typography
               variant="h3"
               color="blue-gray"
@@ -74,9 +73,9 @@ const Login = () => {
               Enter your email and password to log in.
             </Typography>
 
-            {/* Form Section */}
+         
             <form onSubmit={handleSubmit(onSubmit)} className="text-left">
-              {/* Email Field */}
+             
               <div className="mb-6">
                 <label htmlFor="email">
                   <Typography

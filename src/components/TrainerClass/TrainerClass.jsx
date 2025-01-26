@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Card, Typography } from "@material-tailwind/react";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const TABLE_HEAD = ["ClassID", "Name", "Details", ""];
 
@@ -25,6 +26,7 @@ const TrainerClass = ({ trainerId }) => {
   console.log(trainerClasses);
   return (
     <div>
+      <SectionTitle title={"Assigned Classes"} subtitle={""} />
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

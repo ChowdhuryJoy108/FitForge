@@ -32,40 +32,7 @@ const PostCard = ({ post, refetch }) => {
 
   return (
     <div>
-      {/* <Card className="mt-6 w-96 h-full">
-        <CardHeader color="blue-gray" className="relative h-56">
-          <img
-            src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-            alt="card-image"
-          />
-        </CardHeader>
-        <CardBody>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            {title}
-          </Typography>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            By : {email}
-          </Typography>
-          <Typography>{description}</Typography>
-        </CardBody>
-        <CardFooter className=" flex gap-2 pt-0">
-          <Button
-            onClick={() => handleVote(_id, "upvotes")}
-            className="inline-flex gap-1 justify-center"
-          >
-            <FaRegThumbsUp /> {upvotes}
-          </Button>
-          <Button
-            onClick={() => handleVote(_id, "downvotes")}
-            className="inline-flex gap-1 justify-center"
-          >
-            <FaRegThumbsDown /> {downvotes}
-          </Button>
-          <Link to={`/forum/${_id}`}>
-            <Button>Read More</Button>
-          </Link>
-        </CardFooter>
-      </Card> */}
+    
       <Card className="mt-6 w-full h-[500px] flex flex-col justify-between lg:w-96">
         <CardHeader color="blue-gray" className="relative h-[200px]">
           <img

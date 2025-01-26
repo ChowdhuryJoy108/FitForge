@@ -40,7 +40,7 @@ const ClassCard = ({ item , refetch}) => {
 
   return (
     <div>
-      <Card className="max-w-[24rem] h-[450px] flex flex-col justify-between overflow-hidden">
+      <Card className="w-full h-[450px] flex flex-col justify-between overflow-hidden lg:max-w-[24rem]">
         <CardHeader
           floated={false}
           shadow={false}

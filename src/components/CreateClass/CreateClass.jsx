@@ -65,23 +65,6 @@ const CreateClass = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
-        {/* <div className="flex flex-col">
-          <label className="font-semibold mb-2">Class Name</label>
-          <Controller
-            control={control}
-            name="classes" 
-            rules={{ required: 'At least one class must be selected' }}
-            render={({ field }) => (
-              <Select
-                
-                options={classOptions}
-                {...field}
-                className={errors.classes ? 'border-red-500' : ''}
-              />
-            )}
-          />
-          {errors.classes && <p className="text-red-500 text-sm">{errors.classes.message}</p>}
-        </div> */}
         <div className="flex flex-col">
           <label className="font-semibold mb-2">Class Name</label>
           <Input

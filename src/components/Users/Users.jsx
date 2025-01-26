@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Button, Card, Typography } from "@material-tailwind/react";
+import Swal from "sweetalert2";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
-const TABLE_HEAD = [ "Name", "Email", "Role", ""];
+const TABLE_HEAD = ["Name", "Email", "Role", ""];
 const Users = () => {
   const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
@@ -20,39 +22,34 @@ const Users = () => {
     setAllUsers(users);
   }, [users]);
 
-  const handleDeleteUser = (userId) =>{
-    axiosSecure.delete(
-      `/allUsers/${userId}`
-    );
-    setAllUsers(
-      users.filter((app) => app._id !== userId)
-    );
+  const handleDeleteUser = (userId) => {
+    axiosSecure.delete(`/allUsers/${userId}`);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "User deleted successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    setAllUsers(users.filter((app) => app._id !== userId));
     refetch();
-  }
-
-  const handleMakeAdmin = async (id) => {
-    console.log(id)
-    try {
-      await axiosSecure.patch(`/make-admin/${id}`);
-      setAllUsers(
-        allUsers.map((user) =>
-          user._id === id ? { ...user, role: "admin" } : user
-        )
-      );
-      refetch();
-    } catch (error) {
-      console.error("Error making user admin:", error);
-    }
   };
 
+  const handleMakeAdmin = async (id) => {
+    await axiosSecure.patch(`/make-admin/${id}`);
+    // refetch();
+    setAllUsers(
+      allUsers.map((user) =>
+        user._id === id ? { ...user, role: "admin" } : user
+      )
+    );
+    refetch();
+  };
 
-  console.log(allUsers)
   return (
     <>
-      <div className="text-center text-4xl my-4">
-        <h1>ALL USERS</h1>
-      </div>
-      
+      <SectionTitle title={"Manage All Users"} subtitle={""} /> 
+
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
@@ -74,65 +71,63 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {allUsers.map(
-              ({ _id, name, email, role }, index) => {
-                const isLast = index === allUsers.length - 1;
-                const classes = isLast
-                  ? "p-4"
-                  : "p-4 border-b border-blue-gray-50";
+            {allUsers.map(({ _id, name, email, role }, index) => {
+              const isLast = index === allUsers.length - 1;
+              const classes = isLast
+                ? "p-4"
+                : "p-4 border-b border-blue-gray-50";
 
-                return (
-                  <tr key={name}>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {name}
-                      </Typography>
-                    </td>
-                    <td className={`${classes} bg-blue-gray-50/50`}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {email}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {role}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Button
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal mr-2"
-                        onClick={()=>handleMakeAdmin(_id)}
-                      >
-                        make admin
-                      </Button>
+              return (
+                <tr key={name}>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {name}
+                    </Typography>
+                  </td>
+                  <td className={`${classes} bg-blue-gray-50/50`}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {email}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {role}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <Button
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal mr-2"
+                      onClick={() => handleMakeAdmin(_id)}
+                    >
+                      make admin
+                    </Button>
 
-                      <Button
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                        onClick={()=>handleDeleteUser(_id)}
-                      >
-                        delete
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              }
-            )}
+                    <Button
+                      variant="small"
+                      color="red"
+                      className="font-normal"
+                      onClick={() => handleDeleteUser(_id)}
+                    >
+                      delete
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </Card>

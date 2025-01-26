@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import UpdateSlotModal from "../UpdateSlotModal/UpdateSlotModal"; // Import the modal component
+import Swal from "sweetalert2";
 
 const TABLE_HEAD = ["Slot Name", "Slot Time", "Days", "Duration", ""];
 
@@ -10,47 +11,35 @@ const ManageSlots = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [trainer, setTrainer] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false); 
   const [selectedSlot, setSelectedSlot] = useState(null);
-  // const [trainerClasses, setTrainerClasses] = useState([]); // Selected slot
 
-  // Fetch trainer data
   useEffect(() => {
     if (user && user.email) {
       const fetchData = async () => {
         try {
           const res = await axiosSecure.get(`/specific-trainer/${user.email}`);
           setTrainer(res.data);
-          // console.log(trainer?.trainerId);
-          //   const classesRes = await axiosSecure.get(`/trainer/${trainer?.trainerId}/classes`);
-          //   console.log(classesRes)
-          //   const classOptions = classesRes.data.map((cls) => ({
-          //     // value: cls.classId,
-          //     label: cls.classId,
-          //   }));
-          //   setTrainerClasses(classOptions);
+       
         } catch (error) {
-          console.error("Error fetching data:", error);
+          // console.error("Error fetching data:", error);
         }
       };
       fetchData();
     } else {
-      console.log("User is not authenticated or email is missing");
+      // console.log("User is not authenticated or email is missing");
     }
   }, [user]);
 
-  console.log(trainer);
-  // console.log(trainerClasses);
 
-  // Handle opening the modal
   const handleOpenModal = (slot) => {
     setSelectedSlot(slot);
     setIsModalOpen(true);
   };
 
-  // Handle updating the slot
+
   const handleUpdateSlot = (updatedSlot) => {
-    // Update local state with the updated slot passed from the modal
+  
     setTrainer((prev) => ({
       ...prev,
       availableSlots: prev.availableSlots.map((slot) =>
@@ -65,7 +54,11 @@ const ManageSlots = () => {
         `/trainer/slots/${trainer.trainerId}/${slotId}`
       );
       if (res.data.success) {
-        // Update local state to reflect deletion
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
         setTrainer((prev) => ({
           ...prev,
           availableSlots: prev.availableSlots.filter(
@@ -143,7 +136,7 @@ const ManageSlots = () => {
                           className="font-normal"
                         >
                           {typeof day === "string" ? day : day.value}{" "}
-                          {/* Support both formats */}
+                          
                         </Typography>
                       ))}
                     </td>
@@ -169,8 +162,7 @@ const ManageSlots = () => {
                             slotTime,
                             duration,
                             days,
-                            // classIds,
-                            // trainerClasses:trainerClasses
+                            
                           })
                         }
                       >

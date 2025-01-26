@@ -2,6 +2,7 @@ import { Button, Input, Typography } from "@material-tailwind/react";
 
 import React, { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const NewsLetter = () => {
   const axiosPublic = useAxiosPublic()
@@ -24,7 +25,9 @@ const NewsLetter = () => {
     }
   };
   return (
-    <div className="bg-[#eceff1] w-full rounded-lg my-[100px]">
+   <div>
+    <SectionTitle title={"Stay Fit, Strong & Inspired – Join Our Newsletter!"} subtitle={""} />
+     <div className="bg-[#eceff1] w-full rounded-lg my-[50px]">
       <section className="py-20 mx-auto container max-w-4xl px-8">
         <div className="flex flex-col gap-4 items-center">
           <Typography className="text-gray-800 !font-semibold text-center lg:text-2xl">
@@ -48,6 +51,7 @@ const NewsLetter = () => {
         </div>
       </section>
     </div>
+   </div>
   );
 };
 

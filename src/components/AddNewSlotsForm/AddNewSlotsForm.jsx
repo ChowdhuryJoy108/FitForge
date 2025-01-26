@@ -10,6 +10,7 @@ import {
   CardHeader,
 } from "@material-tailwind/react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddNewSlotsForm = ({ trainer }) => {
   const { trainerId, name, specialization, bio } = trainer;
@@ -24,7 +25,7 @@ const AddNewSlotsForm = ({ trainer }) => {
   const [selectedDays, setSelectedDays] = useState([]);
   const [selectedClasses, setSelectedClasses] = useState([]);
 
-  // Fetch available classes for the trainer
+
   useEffect(() => {
     const fetchClasses = async () => {
       try {
@@ -45,21 +46,30 @@ const AddNewSlotsForm = ({ trainer }) => {
   // Form submission handler
   const onSubmit = async (data) => {
     const newSlot = {
-      slotId: `slot${Date.now()}`, // Generate unique slot ID
+      slotId: `slot${Date.now()}`,
       slotName: data.slotName,
       slotTime: data.slotTime,
       duration: data.duration,
-      days: selectedDays.map((day) => day.value), // Extract 'value' from selectedDays
-      classIds: selectedClasses.map((cls) => cls.value), // Extract 'value' from selectedClasses
-      bookings: [], // Initialize empty bookings
+      days: selectedDays.map((day) => day.value),
+      classIds: selectedClasses.map((cls) => cls.value),
+      bookings: [],
     };
 
     try {
       await axiosSecure.post(`/trainer/slots/${trainerId}`, newSlot);
-      alert("New slot added successfully!");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "New slot added successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
-      console.error("Error adding slot:", error);
-      alert("Failed to add slot.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Error adding slot",
+      });
     }
   };
 
@@ -78,7 +88,12 @@ const AddNewSlotsForm = ({ trainer }) => {
               <Typography variant="small" color="blue-gray" className="mb-1">
                 Trainer Name
               </Typography>
-              <Input type="text" value={name} readOnly className="bg-gray-100" />
+              <Input
+                type="text"
+                value={name}
+                readOnly
+                className="bg-gray-100"
+              />
             </div>
             <div>
               <Typography variant="small" color="blue-gray" className="mb-1">
@@ -98,7 +113,6 @@ const AddNewSlotsForm = ({ trainer }) => {
               <Input type="text" value={bio} readOnly className="bg-gray-100" />
             </div>
 
-            {/* Select Days */}
             <div>
               <Typography variant="small" color="blue-gray" className="mb-1">
                 Select Days
@@ -115,7 +129,9 @@ const AddNewSlotsForm = ({ trainer }) => {
                   { value: "Sunday", label: "Sunday" },
                 ]}
                 value={selectedDays} // Ensure selectedDays structure matches { value, label }
-                onChange={(selectedOptions) => setSelectedDays(selectedOptions || [])}
+                onChange={(selectedOptions) =>
+                  setSelectedDays(selectedOptions || [])
+                }
                 placeholder="Select days"
                 className="basic-multi-select"
               />
@@ -124,7 +140,6 @@ const AddNewSlotsForm = ({ trainer }) => {
               )}
             </div>
 
-            {/* Slot Name */}
             <div>
               <Typography variant="small" color="blue-gray" className="mb-1">
                 Slot Name
@@ -136,11 +151,12 @@ const AddNewSlotsForm = ({ trainer }) => {
                 error={!!errors.slotName}
               />
               {errors.slotName && (
-                <p className="text-red-500 text-sm">{errors.slotName.message}</p>
+                <p className="text-red-500 text-sm">
+                  {errors.slotName.message}
+                </p>
               )}
             </div>
 
-            {/* Slot Time */}
             <div>
               <Typography variant="small" color="blue-gray" className="mb-1">
                 Slot Time
@@ -152,11 +168,12 @@ const AddNewSlotsForm = ({ trainer }) => {
                 error={!!errors.slotTime}
               />
               {errors.slotTime && (
-                <p className="text-red-500 text-sm">{errors.slotTime.message}</p>
+                <p className="text-red-500 text-sm">
+                  {errors.slotTime.message}
+                </p>
               )}
             </div>
 
-            {/* Duration */}
             <div>
               <Typography variant="small" color="blue-gray" className="mb-1">
                 Duration (Minutes)
@@ -174,31 +191,30 @@ const AddNewSlotsForm = ({ trainer }) => {
               )}
             </div>
 
-            {/* Select Classes */}
             <div>
               <Typography variant="small" color="blue-gray" className="mb-1">
                 Classes
               </Typography>
               <Select
                 isMulti
-                options={classes} // Dynamically loaded classes
+                options={classes}
                 value={selectedClasses}
-                
                 onChange={(selectedOptions) =>
                   setSelectedClasses(selectedOptions || [])
                 }
                 placeholder="Select classes"
               />
               {errors.classIds && (
-                <p className="text-red-500 text-sm">{errors.classIds.message}</p>
+                <p className="text-red-500 text-sm">
+                  {errors.classIds.message}
+                </p>
               )}
             </div>
 
-            {/* Submit Button */}
             <div className="text-center">
               <Button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md"
+                className="w-full bg-gray-700 hover:bg-black text-white px-6 py-2 rounded-md"
               >
                 Add Slot
               </Button>

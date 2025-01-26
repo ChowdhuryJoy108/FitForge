@@ -6,24 +6,27 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 const CreateForumPost = () => {
   //   const [forums, setForums] = useState([]);
-  const {user} = useAuth()
-  console.log(user.email)
-  const axiosSecure = useAxiosSecure()
-  const [newPost, setNewPost] = useState({ title: "", description: "", imageUrl: "" });
+  const { user } = useAuth();
+  console.log(user.email);
+  const axiosSecure = useAxiosSecure();
+  const [newPost, setNewPost] = useState({
+    title: "",
+    description: "",
+    imageUrl: "",
+  });
 
   const handleAddPost = async () => {
     if (!newPost.title || !newPost.description) {
       Swal.fire({
         title: "Opps!",
         text: "Title and description are required.",
-        icon: "error"
+        icon: "error",
       });
-    
+
       return;
     }
 
     try {
-       
       await axiosSecure.post("/forumPost", {
         email: user.email,
         ...newPost,
@@ -31,13 +34,20 @@ const CreateForumPost = () => {
         downvotes: 0,
         createdAt: new Date(),
       });
-    //   setForums((prev) => [response.data, ...prev]); // Add the new post to the list
-      setNewPost({ title: "", description: "", imageUrl: "" }); // Reset the form
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Post successfully Added!",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      setNewPost({ title: "", description: "", imageUrl: "" });
     } catch (error) {
       Swal.fire({
         title: "Opps!",
         text: "Failed to add forum post.",
-        icon: "error"
+        icon: "error",
       });
     }
   };
@@ -53,11 +63,13 @@ const CreateForumPost = () => {
             value={newPost.title}
             onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
           />
-           <Input
+          <Input
             label="Image URL"
             type="url"
             value={newPost.imageUrl}
-            onChange={(e) => setNewPost({ ...newPost, imageUrl: e.target.value })}
+            onChange={(e) =>
+              setNewPost({ ...newPost, imageUrl: e.target.value })
+            }
           />
           <Textarea
             label="Description"

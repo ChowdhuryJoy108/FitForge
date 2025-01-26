@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const UpdateSlotModal = ({ open, handleClose, slot, onUpdate }) => {
   console.log(slot);
@@ -56,25 +57,36 @@ const UpdateSlotModal = ({ open, handleClose, slot, onUpdate }) => {
       days: formData.days.map((day) => day.value),
     };
 
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
-      // Backend API call
       const response = await axiosSecure.put(
         `/trainer/slots/${slot.trainerId}/${slot.slotId}`, // Adjust the endpoint as needed
         updatedSlot
       );
 
       if (response.data.success) {
-        // Notify parent component of the update
+        Swal.fire({
+          title: "Updated!",
+          text: "Your Slots has been updated.",
+          icon: "success",
+        });
         onUpdate(response.data.updatedSlot);
-        handleClose(); // Close modal after successful update
+        handleClose();
       } else {
-        console.error("Error updating slot:", response.data.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Error updating slot!",
+        });
       }
     } catch (error) {
-      console.error("Error updating slot:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Error updating slot!",
+      });
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -85,7 +97,6 @@ const UpdateSlotModal = ({ open, handleClose, slot, onUpdate }) => {
       </DialogHeader>
       <DialogBody divider>
         <div className="space-y-4">
-          {/* Slot Name */}
           <div>
             <Typography variant="small" color="blue-gray" className="mb-1">
               Slot Name
@@ -99,7 +110,6 @@ const UpdateSlotModal = ({ open, handleClose, slot, onUpdate }) => {
             />
           </div>
 
-          {/* Slot Time */}
           <div>
             <Typography variant="small" color="blue-gray" className="mb-1">
               Slot Time
@@ -113,7 +123,6 @@ const UpdateSlotModal = ({ open, handleClose, slot, onUpdate }) => {
             />
           </div>
 
-          {/* Duration */}
           <div>
             <Typography variant="small" color="blue-gray" className="mb-1">
               Duration (Minutes)
@@ -127,7 +136,6 @@ const UpdateSlotModal = ({ open, handleClose, slot, onUpdate }) => {
             />
           </div>
 
-          {/* Days */}
           <div>
             <Typography variant="small" color="blue-gray" className="mb-1">
               Select Days
@@ -148,24 +156,6 @@ const UpdateSlotModal = ({ open, handleClose, slot, onUpdate }) => {
               className="basic-multi-select"
             />
           </div>
-
-          {/* <div>
-            <Typography variant="small" color="blue-gray" className="mb-1">
-              Select Classes
-            </Typography>
-            <Select
-              isMulti
-              name="classIds"
-              options={slot.classIds.map((cls) => ({
-                value: cls.value,
-                label: cls.label || cls.value, // Ensure label is set correctly
-              }))}
-              value={formData.classIds}
-              onChange={(selected) => handleSelectChange(selected, "classIds")}
-              placeholder="Select classes"
-              className="basic-multi-select"
-            />
-          </div> */}
         </div>
       </DialogBody>
       <DialogFooter>
@@ -180,7 +170,7 @@ const UpdateSlotModal = ({ open, handleClose, slot, onUpdate }) => {
         </Button>
         <Button
           variant="gradient"
-          color="blue"
+          color="blue-gray"
           onClick={handleSubmit}
           disabled={loading}
         >
