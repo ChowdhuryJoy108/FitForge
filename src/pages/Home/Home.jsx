@@ -4,6 +4,7 @@ import Banner from "./components/Banner/Banner";
 import Testimonials from "./components/Testimonials/Testimonials";
 import HomeLottie from '../../assets/lottie/homeLottie.json'
 import Lottie from "lottie-react";
+import FeaturedClasses from "./components/FeaturedClasses/FeaturedClasses";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
         </div>
       </div>
       <Banner />
+      <FeaturedClasses />
       {/* <h1>Testimonials</h1>
             <Testimonials /> */}
 

@@ -8,7 +8,7 @@ const SectionTitle = ({ title, subtitle }) => {
       <Typography
         variant="h4"
         color="blue-gray"
-        className="text-xl w-full md:text-2xl font-bold leading-tight lg:w-[800px]"
+        className="text-xl w-full md:text-4xl font-bold leading-tight lg:w-[800px]"
       >
         {title}
       </Typography>
