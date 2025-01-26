@@ -66,7 +66,7 @@ const PostCard = ({ post, refetch }) => {
           </Link>
         </CardFooter>
       </Card> */}
-      <Card className="mt-6 w-96 h-[500px] flex flex-col justify-between">
+      <Card className="mt-6 w-full h-[500px] flex flex-col justify-between lg:w-96">
         <CardHeader color="blue-gray" className="relative h-[200px]">
           <img
             src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"

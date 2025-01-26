@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import ClassCard from "../../components/ClassCard/ClassCard";
 import { Helmet } from "react-helmet-async";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import Lottie from "lottie-react";
+import ClassLottie from '../../assets/lottie/classLottie.json'
 
 const Classes = () => {
   const axiosPublic = useAxiosPublic();
@@ -34,7 +37,16 @@ const Classes = () => {
       <Helmet>
         <title>FitForge | Classes</title>
       </Helmet>
-      <h1 className="text-xl font-bold mb-4">All Classes</h1>
+     
+
+    <div>
+      <SectionTitle title={"Transform Your Body with Expert-Led Fitness Classes"} subtitle={"Achieve your health goals through personalized training programs."}/>
+    </div>
+    <div className="flex flex-col items-center">
+        <div className="w-full max-w-sm lg:w-64">
+          <Lottie animationData={ClassLottie} />
+        </div>
+      </div>
 
       {isLoading ? (
         <p>Loading...</p>

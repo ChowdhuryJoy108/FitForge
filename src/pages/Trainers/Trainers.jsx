@@ -3,6 +3,9 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import TrainerCard from "../../components/TrainerCard/TrainerCard";
 import { Helmet } from "react-helmet-async";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import Lottie from "lottie-react";
+import TrainerLottie from '../../assets/lottie/TrainerLottie.json'
 
 const Trainers = () => {
   const axiosPublic = useAxiosPublic();
@@ -35,6 +38,15 @@ const Trainers = () => {
       <Helmet>
         <title>FitForge | Trainers</title>
       </Helmet>
+      
+      <div>
+        <SectionTitle title={"Find Expert Fitness Trainers for Your Perfect Transformation"} subtitle={ "Personalized coaching to help you reach your fitness goals."} />
+      </div>
+      <div className="flex flex-col items-center">
+        <div className="w-full mb-8 max-w-sm lg:w-64">
+          <Lottie animationData={TrainerLottie} />
+        </div>
+      </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {trainers.map((trainer) => (
           <TrainerCard key={trainer._id} trainer={trainer} />

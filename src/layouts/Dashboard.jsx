@@ -1,6 +1,18 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useTrainer from "../hooks/useTrainer";
+import { IoHomeSharp } from "react-icons/io5";
+import { IoWalletSharp } from "react-icons/io5";
+import { MdPostAdd, MdSettingsApplications, MdUnsubscribe } from "react-icons/md";
+import { FaUserAlt, FaUserTag } from "react-icons/fa";
+import { MdOutlineClass } from "react-icons/md";
+import { FaCheckToSlot, FaFolderPlus } from "react-icons/fa6";
+import { SiTrainerroad } from "react-icons/si";
+import { BsFileEarmarkPost } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
+import { RxActivityLog } from "react-icons/rx";
+import { TbBrandBooking } from "react-icons/tb";
+import { IoIosCreate } from "react-icons/io";
 
 const Dashboard = () => {
   const [isAdmin] = useAdmin();
@@ -8,20 +20,18 @@ const Dashboard = () => {
 
   return (
     <div className="px-2 flex flex-col h-auto lg:flex-row min-h-screen">
-
       <div className="bg-gray-800 w-full lg:w-64 lg:min-h-screen">
         <div className="p-4">
-         
-           {isAdmin && (
+          {isAdmin && (
             <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
           )}
           {isTrainer && (
             <h1 className="text-xl font-bold text-white">Trainer Dashboard</h1>
-          )},
+          )}
+          ,
           {!isAdmin && !isTrainer && (
             <h1 className="text-xl font-bold text-white">User Dashboard</h1>
           )}
-         
         </div>
         <ul className="menu flex flex-col gap-4 p-4">
           {isAdmin && (
@@ -30,114 +40,113 @@ const Dashboard = () => {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Home
+                <IoHomeSharp /> Home
               </NavLink>
               <NavLink
                 to="/dashboard/adminHome"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center  hover:text-gray-200"
                 }
               >
-                Admin Home
+                <IoHomeSharp /> Admin Home
               </NavLink>
               <NavLink
                 to="/dashboard/balance"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Balance Informations
+                <IoWalletSharp /> Balance Informations
               </NavLink>
               <NavLink
                 to="/dashboard/subscribers"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Subscribers
+                <MdUnsubscribe /> Subscribers
               </NavLink>
               <NavLink
                 to="/dashboard/allUsers"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Users
+                <FaUserAlt /> Users
               </NavLink>
 
               <NavLink
                 to="/dashboard/allClasses"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                classes
+               <MdOutlineClass /> classes
               </NavLink>
               <NavLink
                 to="/dashboard/createClass"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Add New Class
+               <FaFolderPlus /> Add New Class
               </NavLink>
               <NavLink
                 to="/dashboard/allTrainers"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Trainers
+                <SiTrainerroad /> Trainers
               </NavLink>
               <NavLink
                 to="/dashboard/applications"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Applications
+               <MdSettingsApplications /> Applications
               </NavLink>
               <NavLink
                 to="/dashboard/forumPosts"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Forum Posts
+                <BsFileEarmarkPost /> Forum Posts
               </NavLink>
               <NavLink
                 to="/dashboard/createForumPost"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Create Forum Post
+               <MdPostAdd /> Create Forum Post
               </NavLink>
-              
             </>
           )}
           {isTrainer && (
@@ -146,107 +155,117 @@ const Dashboard = () => {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Home
+              <IoHomeSharp />  Home
+              </NavLink>
+              <NavLink
+                to="/dashboard/clients"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
+                }
+              >
+              <FaUserTag /> My client
               </NavLink>
               <NavLink
                 to="/dashboard/trainerClasses"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Classes
+               <MdOutlineClass /> Classes
               </NavLink>
 
               <NavLink
                 to="/dashboard/forumPosts"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Forum Posts
+              <BsFileEarmarkPost />  Forum Posts
               </NavLink>
               <NavLink
                 to="/dashboard/createForumPost"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Create Forum Post
+                <MdPostAdd /> Create Forum Post
               </NavLink>
               <NavLink
                 to="/dashboard/manageSlots"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Manage Slots
+               <FaCheckToSlot /> Manage Slots
               </NavLink>
               <NavLink
                 to="/dashboard/addNewSlots"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Add New Slots
+              <IoIosCreate />  Add New Slots
               </NavLink>
             </>
           )}
 
           {!isAdmin && !isTrainer && (
             <>
-             <NavLink
+              <NavLink
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Home
+              <IoHomeSharp />  Home
               </NavLink>
               <NavLink
-                to="/dashboard/userProfile"
+                to="/dashboard"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Profile
-              </NavLink>
-              <NavLink
-                to="/dashboard/bookedTrainers"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
-                }
-              >
-                Booked Trainers
+               <CgProfile /> My Profile
               </NavLink>
               <NavLink
                 to="/dashboard/trainerApplication"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-white font-bold"
-                    : "text-white hover:text-gray-200"
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
                 }
               >
-                Applications Status
+               <RxActivityLog /> Activity Log
+              </NavLink>
+              <NavLink
+                to="/dashboard/bookedTrainers"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-bold inline-flex gap-2 items-center"
+                    : "text-white inline-flex gap-2 items-center hover:text-gray-200"
+                }
+              >
+               <TbBrandBooking /> Booked Trainers
               </NavLink>
             </>
           )}

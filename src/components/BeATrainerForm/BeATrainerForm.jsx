@@ -98,7 +98,7 @@ const BeATrainerForm = () => {
         },
 
         availableSlots: availableSlots.map((slot, index) => ({
-          slotId: `slot${Date.now()}-${index}`, // Unique slot ID
+          slotId: `slot${Date.now()}-${index}`, 
           slotName: slot.slotName,
           slotTime: slot.slotTime,
           duration: slot.duration,
@@ -107,6 +107,7 @@ const BeATrainerForm = () => {
           bookings: [],
         })),
         createdAt: new Date(),
+        status:"pending",
       };
 
       await axiosPublic.post("/applyTrainer", formattedData);

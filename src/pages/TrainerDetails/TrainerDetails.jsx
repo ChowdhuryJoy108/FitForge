@@ -136,17 +136,15 @@ const TrainerDetails = () => {
                 slot.days.length > 0 ? (
                   slot.days.map((day, dayIndex) => (
                     <Button
-                      key={`${slot.slotId}-${dayIndex}`} // Ensure unique key for React
-                      onClick={() => handleSlotClick(slot, day, classId)} // Pass slot and day to the handler
+                      key={`${slot.slotId}-${dayIndex}`}
+                      onClick={() => handleSlotClick(slot, day, classId)}
                       variant="gradient"
                       className="w-full"
-                      // disabled={!classId}
                     >
                       {day} - {slot.slotTime}
                     </Button>
                   ))
                 ) : (
-                  // Render a fallback button for slots without selected days
                   <Typography
                     key={slot.slotId}
                     color="red"
@@ -165,26 +163,26 @@ const TrainerDetails = () => {
         </CardBody>
       </Card>
 
-      <div className="flex flex-col items-center gap-2 bg-blue-gray-100 my-8 py-4 rounded-lg">
-        <SectionTitle
-          title={
-            "Become a Fitness Trainer – Inspire, Train, and Transform Lives"
-          }
-          subtitle={
-            "Turn your passion for fitness into a career by helping others achieve their health and wellness goals."
-          }
-        />
-        <div>
-          {isAdmin || isTrainer ? (
-            " "
-          ) : (
-            <div>
+      <div>
+        {isAdmin || isTrainer ? (
+          " "
+        ) : (
+          <div>
+            <div className="flex flex-col items-center gap-2 bg-blue-gray-100 my-8 py-4 rounded-lg">
+              <SectionTitle
+                title={
+                  "Become a Fitness Trainer – Inspire, Train, and Transform Lives"
+                }
+                subtitle={
+                  "Turn your passion for fitness into a career by helping others achieve their health and wellness goals."
+                }
+              />
               <Link to="/betrainer">
                 <Button> Be a Trainer</Button>
               </Link>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );

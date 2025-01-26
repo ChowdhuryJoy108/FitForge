@@ -3,8 +3,8 @@ import { Typography } from "@material-tailwind/react";
 
 const SectionTitle = ({ title, subtitle }) => {
   return (
-    <div className="flex flex-col items-center text-center px-4 py-8 space-y-4 md:py-12">
-      {/* Section Title */}
+    <div className="flex w-full flex-col items-center text-center px-4 py-8 space-y-4 md:py-12">
+
       <Typography
         variant="h4"
         color="blue-gray"
@@ -13,7 +13,7 @@ const SectionTitle = ({ title, subtitle }) => {
         {title}
       </Typography>
 
-      {/* Section Subtitle */}
+  
       <Typography
         variant="h6"
         color="blue-gray"

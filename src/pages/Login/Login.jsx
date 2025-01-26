@@ -182,7 +182,7 @@ const Login = () => {
                 log in with Google
               </Button>
 
-              {/* Redirect to Register */}
+            
               <Typography
                 variant="small"
                 color="gray"

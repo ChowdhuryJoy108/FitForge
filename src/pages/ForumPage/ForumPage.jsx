@@ -3,6 +3,9 @@ import PostCard from "../../components/PostCard/PostCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import Lottie from "lottie-react";
+import ForumPostLottie from "../../assets/lottie/postsLottie.json";
 
 const ForumPage = () => {
   const axiosSecure = useAxiosSecure();
@@ -29,22 +32,37 @@ const ForumPage = () => {
       refetch();
     }
   };
+
   return (
-    <div>
+    <div className="w-full px-4 sm:px-6 lg:px-8">
       <Helmet>
         <title>FitForge | Forum </title>
       </Helmet>
-      <div className="grid gap-x-2 gap-y-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+
+      <div className="mt-4">
+        <SectionTitle
+          title={"Join Discussions on Fitness, Health, and Wellness Tips"}
+          subtitle={
+            "Share insights, ask questions, and connect with fitness enthusiasts."
+          }
+        />
+      </div>
+      <div className="flex flex-col items-center">
+        <div className="w-full max-w-sm lg:w-64">
+          <Lottie animationData={ForumPostLottie} />
+        </div>
+      </div>
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6">
         {forumPosts.map((post) => (
           <PostCard key={post._id} post={post} refetch={refetch} />
         ))}
       </div>
-      {/* Pagination */}
-      <div className="flex justify-center items-center mt-6">
+
+      <div className="flex flex-wrap justify-center items-center mt-6">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="px-3 py-1 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded mr-2"
+          className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded mr-2 mb-2 sm:mb-0"
         >
           Previous
         </button>
@@ -54,7 +72,7 @@ const ForumPage = () => {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="px-3 py-1 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded"
+          className="px-4 py-2 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded mb-2 sm:mb-0"
         >
           Next
         </button>

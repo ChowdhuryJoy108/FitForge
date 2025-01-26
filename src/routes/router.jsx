@@ -28,11 +28,16 @@ import DisplayAllClasses from "../components/DisplayAllClasses/DisplayAllClasses
 import DisplayBalanceInformations from "../components/DisplayBalanceInformations/DisplayBalanceInformations";
 import AdminHome from "../components/AdminHome/AdminHome";
 import DashboardHome from "../components/DashboardHome/DashboardHome";
+import BookedTrainers from "../components/BookedTrainers/BookedTrainers";
+import ApplicationStatus from "../components/ApplicationStatus/ApplicationStatus";
+import Myclients from "../components/Myclients/Myclients";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement:<ErrorPage />,
     children: [
       {
         path: "/",
@@ -164,6 +169,18 @@ const router = createBrowserRouter([
         path: "/dashboard/balance",
         element: <DisplayBalanceInformations />,
       },
+      {
+        path:"/dashboard/bookedTrainers",
+        element:<BookedTrainers />
+      },
+      {
+        path:"/dashboard/trainerApplication",
+        element:<ApplicationStatus />
+      },
+      {
+        path:"/dashboard/clients",
+        element:<Myclients />
+      }
     ],
   },
 ]);

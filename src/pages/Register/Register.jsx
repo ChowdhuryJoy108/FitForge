@@ -81,7 +81,6 @@ const Register = () => {
             Enter your Info below to Register yourself.
           </Typography>
 
-          {/* Form Section */}
           <form onSubmit={handleSubmit(onSubmit)} className="text-left">
             <div className="mb-6">
               <label htmlFor="name">

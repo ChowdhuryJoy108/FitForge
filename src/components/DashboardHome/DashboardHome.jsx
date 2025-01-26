@@ -19,7 +19,9 @@ const DashboardHome = () => {
   return (
     <div>
       <Helmet>
-        <title>FitForge | Dashboard </title>
+        {isAdmin && <title>FitForge | Admin Dashboard </title>}
+        {isTrainer && <title>FitForge | Trainer Dashboard </title>}
+        {!isAdmin && !isTrainer && <title>FitForge | User Dashboard </title>}
       </Helmet>
       {isAdmin && <AdminHome />}
       {isTrainer && <TrainerHome />}
