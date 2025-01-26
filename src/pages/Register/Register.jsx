@@ -175,7 +175,7 @@ const Register = () => {
               )}
             </div>
 
-            {/* Password Field */}
+
             <div className="mb-6">
               <label htmlFor="password">
                 <Typography
@@ -222,7 +222,7 @@ const Register = () => {
               Register
             </Button>
 
-            {/* Forgot Password */}
+    
             <div className="mt-4 flex justify-end">
               <Typography
                 as="a"
@@ -234,22 +234,7 @@ const Register = () => {
                 Forgot password
               </Typography>
             </div>
-
-            <Button
-              variant="outlined"
-              size="lg"
-              className="text-xs mt-6 flex h-12 items-center justify-center gap-2 lg:text-sm"
-              fullWidth
-            >
-              <img
-                src={`https://www.material-tailwind.com/logos/logo-google.png`}
-                alt="google"
-                className="text-xs h-6 w-6 lg:text-2xl"
-              />{" "}
-              Register with Google
-            </Button>
-
-            {/* Redirect to Register */}
+     
             <Typography
               variant="small"
               color="gray"

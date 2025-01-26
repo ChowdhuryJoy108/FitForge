@@ -1,5 +1,6 @@
 # FitForge [assignment12_category_010]
 
+
 ## Overview
 This project is a full-stack fitness website developed using the MERN (MongoDB, Express.js, React.js, Node.js) stack. The website provides a seamless user experience for fitness enthusiasts to browse and book trainers, participate in classes, and engage with the community.
 
