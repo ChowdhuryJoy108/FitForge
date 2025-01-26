@@ -49,11 +49,7 @@ const PostDetails = () => {
               <h6 class="mb-2 text-slate-800 text-xl font-semibold">{title}</h6>
               <p>By:{email}</p>
             </div>
-            <div>
-              <Badge className="bg-red-600" color="red">
-                <Button>admin</Button>
-              </Badge>
-            </div>
+           
           </div>
           <div class="relative h-auto w-5xl m-2.5 overflow-hidden text-white rounded-md lg:h-[400px]">
             <img

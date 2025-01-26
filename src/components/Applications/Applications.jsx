@@ -3,6 +3,7 @@ import { Button, Card, Typography } from "@material-tailwind/react";
 
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const TABLE_HEAD = ["Applicant Name", "Email", "Experience", ""];
 
@@ -27,23 +28,28 @@ const Applications = () => {
     const res = axiosSecure.post(
       `/trainer-applications/approve/${applicationId}`
     );
-    alert(`Trainer approved!`);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Application Approved! Promoted to Trainer.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
     setRemainingApplications(
       applications.filter((app) => app._id !== applicationId)
     );
     refetch();
   };
 
-  const handleRejectApplication = (applicationId) =>{
-    console.log(applicationId)
-    axiosSecure.delete(
-      `/trainer-applications/reject/${applicationId}`
-    );
+  const handleRejectApplication = (applicationId) => {
+    axiosSecure.delete(`/trainer-applications/reject/${applicationId}`);
+
     setRemainingApplications(
       applications.filter((app) => app._id !== applicationId)
     );
     refetch();
-  }
+  };
   return (
     <div>
       <Card className="h-full w-full overflow-scroll">
@@ -120,7 +126,7 @@ const Applications = () => {
                         variant="small"
                         color="blue-gray"
                         className="font-medium mx-2"
-                        onClick={()=>handleRejectApplication(_id)}
+                        onClick={() => handleRejectApplication(_id)}
                       >
                         Reject
                       </Button>
