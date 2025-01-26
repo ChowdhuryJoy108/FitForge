@@ -132,14 +132,12 @@ This project is a full-stack fitness website developed using the MERN (MongoDB, 
 ---
 
 ## Technologies Used
-- **Frontend:** React.js, Tailwind CSS
+- **Frontend:** React.js, Tailwind CSS, axios, tenstackQuery
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Authentication:** Firebase
 - **Payment:** Stripe
-- **Other Libraries:** React Select, Metarial Tailwind, swiper, helmet, React rating,
-
----
+- **Other Libraries:** React Select, Metarial Tailwind, swiper, helmet, React rating, sweetalert2 [for alerts generation], Lottie-React [for generating animations], react recharts [for shape chart in admin dashboard]
 
 
 
