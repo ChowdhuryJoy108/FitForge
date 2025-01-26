@@ -7,6 +7,7 @@ import Lottie from "lottie-react";
 import FeaturedClasses from "./components/FeaturedClasses/FeaturedClasses";
 import LatestForumPosts from "../../components/latestForumPosts/LatestForumPosts";
 import Teams from "../../components/Teams/Teams";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 const Home = () => {
   return (
@@ -24,8 +25,8 @@ const Home = () => {
       <LatestForumPosts />
       <Teams />
       <Testimonials />
-
       <NewsLetter />
+      <AboutUs />
     </div>
   );
 };
