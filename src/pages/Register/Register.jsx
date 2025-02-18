@@ -241,7 +241,7 @@ const Register = () => {
               className="mt-4 text-center font-normal"
             >
               Already registered ?{" "}
-              <Link to="/Login" className="font-medium text-gray-900">
+              <Link to="/Login" className="font-bold text-gray-900">
                 Login Now
               </Link>
             </Typography>

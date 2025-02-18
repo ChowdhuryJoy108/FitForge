@@ -167,22 +167,6 @@ const Login = () => {
                   Forgot password
                 </Typography>
               </div>
-
-              {/* <Button
-                variant="outlined"
-                size="lg"
-                className="text-xs mt-6 flex h-12 items-center justify-center gap-2 lg:text-sm"
-                fullWidth
-                onClick={googleSignIn}
-              >
-                <img
-                  src={`https://www.material-tailwind.com/logos/logo-google.png`}
-                  alt="google"
-                  className="h-6 w-6"
-                />{" "}
-                log in with Google
-              </Button> */}
-
               <SocialLogin />
             
               <Typography
@@ -191,8 +175,8 @@ const Login = () => {
                 className="mt-4 text-center font-normal"
               >
                 Not registered yet?{" "}
-                <Link to="/register" className="font-medium text-gray-900">
-                  Create account
+                <Link to="/register" className="font-bold text-gray-900 ">
+                  Create Account
                 </Link>
               </Typography>
             </form>
