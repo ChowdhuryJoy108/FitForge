@@ -5,9 +5,11 @@ import Navigationbar from "../sharedComponents/Navbar/Navigationbar";
 
 const MainLayout = () => {
   return (
-    <div className="w-full lg:max-w-7xl mx-auto">
+    <div>
       <Navigationbar />
-      <Outlet></Outlet>
+      <div className="w-full lg:max-w-7xl mx-auto">
+        <Outlet></Outlet>
+      </div>
       <Footer />
     </div>
   );
