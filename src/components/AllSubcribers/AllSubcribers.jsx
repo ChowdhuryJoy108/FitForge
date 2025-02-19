@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
 import { Button, Card, Typography } from "@material-tailwind/react";
+import SectionTitle from "../SectionTitle/SectionTitle";
 const TABLE_HEAD = ["ID", "Email", ""];
 const AllSubcribers = () => {
   const axiosSecure = useAxiosSecure();
@@ -31,10 +32,14 @@ const AllSubcribers = () => {
       refetch();
     }
 
-  console.log(allSubscribers);
+
 
   return (
     <div>
+       <SectionTitle
+        title={"All subcriptions"}
+        subtitle={"Track all the Subcriptions in one place with all necessary informations.."}
+      />
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

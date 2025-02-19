@@ -4,6 +4,7 @@ import { Button, Card, Typography } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const TABLE_HEAD = ["Applicant Name", "Email", "Experience", ""];
 
@@ -52,6 +53,10 @@ const Applications = () => {
   };
   return (
     <div>
+      <SectionTitle
+        title={"Be a Trainer Applications"}
+        subtitle={"Track all applications by the users in one place with all necessary actions.."}
+      />
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

@@ -168,7 +168,7 @@ const TrainerDetails = () => {
           " "
         ) : (
           <div>
-            <div className="flex flex-col items-center gap-2 bg-blue-gray-100 my-8 py-4 rounded-lg">
+            <div className="flex flex-col items-center gap-2 bg-blue-gray-100 dark:bg-black my-8 py-4 rounded-lg">
               <SectionTitle
                 title={
                   "Become a Fitness Trainer – Inspire, Train, and Transform Lives"

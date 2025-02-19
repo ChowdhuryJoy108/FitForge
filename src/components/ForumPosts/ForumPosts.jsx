@@ -59,7 +59,7 @@ const ForumPosts = () => {
 
   return (
     <div>
-      <SectionTitle title={"Community Posts"} subtitle={""} />
+      <SectionTitle title={"Community Posts"} subtitle={"Join the Conversation: Explore, Share, and Engage with the Community!🚀"} />
       <Card className="h-full w-full overflow-scroll">
         {posts && posts.length > 0 ? (
           <>

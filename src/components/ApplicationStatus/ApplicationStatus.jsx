@@ -37,7 +37,7 @@ const ApplicationStatus = () => {
   console.log(application, applicant);
   return (
     <div>
-      <h2 className="text-2xl text-center font-bold">
+      <h2 className="text-2xl dark:text-black text-center font-bold">
         Track Your Be a Trainer Application.
       </h2>
       <div className="my-[50px]">
@@ -102,7 +102,7 @@ const ApplicationStatus = () => {
         {!application && applicant.role === "member" && (
           <div class="flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6 w-full lg:w-3xl">
             <div class="flex justify-between items-center mb-4">
-              <h5 class="ml-3 text-slate-800 text-xl font-semibold">
+              <h5 class="ml-3 text-slate-800 dark:text-black  text-xl font-semibold">
                 Your Application not Accepted!
               </h5>
               <div>

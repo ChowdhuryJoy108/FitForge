@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import Lottie from "lottie-react";
 import ClassLottie from '../../assets/lottie/classLottie.json'
+import { Spinner } from "@material-tailwind/react";
 
 const Classes = () => {
   const axiosPublic = useAxiosPublic();
@@ -38,7 +39,6 @@ const Classes = () => {
         <title>FitForge | Classes</title>
       </Helmet>
      
-
     <div>
       <SectionTitle title={"Transform Your Body with Expert-Led Fitness Classes"} subtitle={"Achieve your health goals through personalized training programs."}/>
     </div>
@@ -49,7 +49,7 @@ const Classes = () => {
       </div>
 
       {isLoading ? (
-        <p>Loading...</p>
+        <Spinner />
       ) : (
         <>
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

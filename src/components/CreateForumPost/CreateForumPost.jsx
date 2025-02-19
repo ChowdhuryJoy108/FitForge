@@ -57,7 +57,7 @@ const CreateForumPost = () => {
   return (
     <div>
       <section className="mb-8 p-6 bg-gray-100 rounded-lg shadow-md">
-        <Typography className="text-xl font-bold mb-4">
+        <Typography className="text-xl font-bold mb-4 dark:text-black">
           Create a New Forum Post
         </Typography>
         <div className="space-y-4">

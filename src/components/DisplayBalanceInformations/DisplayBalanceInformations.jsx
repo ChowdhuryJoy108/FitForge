@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Button, Card, Typography } from "@material-tailwind/react";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const TABLE_HEAD = [
   "TransactionID",
@@ -27,7 +28,10 @@ const DisplayBalanceInformations = () => {
 
   return (
     <div>
-
+      <SectionTitle
+        title={"Balance Informations"}
+        subtitle={"Track all the payments in one place with all necessary informations.."}
+      />
       <Card className="h-full w-full lg:w-[1050px]">
    
         <div className="h-[500px] w-full overflow-auto">

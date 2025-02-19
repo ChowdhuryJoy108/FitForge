@@ -26,7 +26,7 @@ const TrainerClass = ({ trainerId }) => {
   console.log(trainerClasses);
   return (
     <div>
-      <SectionTitle title={"Assigned Classes"} subtitle={""} />
+      <SectionTitle title={"Assigned Classes"} subtitle={"Showcasing your assigned Training Classes with details.."} />
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

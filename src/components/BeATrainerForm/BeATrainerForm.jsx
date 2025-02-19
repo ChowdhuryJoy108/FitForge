@@ -124,7 +124,7 @@ const BeATrainerForm = () => {
   };
 
   return (
-    <>
+    <div>
       <Helmet>
         <title>FitForge | Be a Trainer</title>
       </Helmet>
@@ -132,9 +132,9 @@ const BeATrainerForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="max-w-3xl mx-auto p-8 bg-white rounded-md shadow-md space-y-6"
       >
-        <h2 className="text-2xl font-semibold text-center">Be a Trainer</h2>
+        <h2 className="text-2xl font-semibold text-center dark:text-black">Be a Trainer</h2>
 
-        {/* Name and Email */}
+       
         <div>
           <Input
             label="Name"
@@ -155,7 +155,7 @@ const BeATrainerForm = () => {
           />
         </div>
 
-        {/* Profile Image */}
+
         <div>
           <Input
             type="url"
@@ -164,7 +164,6 @@ const BeATrainerForm = () => {
           />
         </div>
 
-        {/* Specialization */}
         <div>
           <label className="block font-medium mb-2">Specialization:</label>
           <Controller
@@ -187,7 +186,7 @@ const BeATrainerForm = () => {
           )}
         </div>
 
-        {/* Bio */}
+   
         <div>
           <Textarea
             label="Bio"
@@ -317,7 +316,7 @@ const BeATrainerForm = () => {
           Submit
         </Button>
       </form>
-    </>
+    </div>
   );
 };
 

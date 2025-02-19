@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const TABLE_HEAD = ["Name", "Email", "Specialization", "Experience", "Actions"];
 
@@ -49,6 +50,10 @@ const AllTrainers = () => {
 
   return (
     <div>
+      <SectionTitle
+        title={"All Trainers"}
+        subtitle={"Track all enlisted Trainers in one place with all necessary actions.."}
+      />
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

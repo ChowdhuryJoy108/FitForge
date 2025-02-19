@@ -48,6 +48,10 @@ const Users = () => {
 
   return (
     <>
+     <SectionTitle
+        title={"All Users"}
+        subtitle={"Track all enrolled users in one place with all necessary actions.."}
+      />
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

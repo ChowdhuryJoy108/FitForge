@@ -78,8 +78,8 @@ const AdminHome = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <div class="relative flex flex-col gap-4 my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full p-6 lg:w-64">
           <div class="flex items-center mb-4">
-            <RiMoneyDollarCircleFill className="text-3xl" />
-            <h5 class="ml-3 text-slate-800 text-sm font-semibold">
+            <RiMoneyDollarCircleFill className="text-3xl dark:text-black" />
+            <h5 class="ml-3 text-slate-800 text-sm font-semibold dark:text-black">
               Total Balance
             </h5>
           </div>
@@ -89,7 +89,7 @@ const AdminHome = () => {
           <div>
             <Link
               to={"/dashboard/balance"}
-              class="text-slate-800 font-semibold text-sm hover:underline flex items-center"
+              className="text-slate-800 dark:text-black font-semibold text-sm hover:underline flex items-center"
             >
               See More
               <svg
@@ -111,8 +111,8 @@ const AdminHome = () => {
         </div>
         <div class="relative flex flex-col gap-4  my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full p-6  lg:w-64">
           <div class="flex items-center mb-4">
-            <FaUsers className="text-3xl" />
-            <h5 class="ml-3 text-slate-800 text-sm font-semibold">
+            <FaUsers className="text-3xl dark:text-black" />
+            <h5 class="ml-3 text-slate-800 dark:text-black text-sm font-semibold">
               Number of Users
             </h5>
           </div>
@@ -122,7 +122,7 @@ const AdminHome = () => {
           <div>
             <Link
               to={"/dashboard/allUsers"}
-              class="text-slate-800 font-semibold text-sm hover:underline flex items-center"
+              class="text-slate-800 dark:text-black font-semibold text-sm hover:underline flex items-center"
             >
               See More
               <svg
@@ -144,8 +144,8 @@ const AdminHome = () => {
         </div>
         <div class="relative flex flex-col gap-4  my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6  w-full  lg:w-64">
           <div class="flex items-center mb-4">
-            <SiTrainerroad className="text-3xl" />
-            <h5 class="ml-3 text-slate-800 text-sm font-semibold">
+            <SiTrainerroad className="text-3xl dark:text-black" />
+            <h5 class="ml-3 text-slate-800 dark:text-black text-sm font-semibold">
               Number of Trainers
             </h5>
           </div>
@@ -155,7 +155,7 @@ const AdminHome = () => {
           <div>
             <Link
               to={"/dashboard/allTrainers"}
-              class="text-slate-800 font-semibold text-sm hover:underline flex items-center"
+              class="text-slate-800 dark:text-black font-semibold text-sm hover:underline flex items-center"
             >
               See More
               <svg
@@ -177,8 +177,8 @@ const AdminHome = () => {
         </div>
         <div class="relative flex flex-col gap-4  my-6 bg-white shadow-sm border border-slate-200 rounded-lg p-6  w-full  lg:w-64">
           <div class="flex items-center mb-4">
-            <IoMdFitness className="text-3xl" />
-            <h5 class="ml-3 text-slate-800 text-sm font-semibold">
+            <IoMdFitness className="text-3xl dark:text-black" />
+            <h5 class="ml-3 text-slate-800 dark:text-black text-sm font-semibold">
               Number of Classes
             </h5>
           </div>
@@ -188,7 +188,7 @@ const AdminHome = () => {
           <div>
             <Link
               to={"/dashboard/allClasses"}
-              class="text-slate-800 font-semibold text-sm hover:underline flex items-center"
+              class="text-slate-800 dark:text-black font-semibold text-sm hover:underline flex items-center"
             >
               See More
               <svg
@@ -210,8 +210,8 @@ const AdminHome = () => {
         </div>
         <div class="relative flex flex-col gap-4  my-6 bg-white shadow-sm border border-slate-200 rounded-lg  p-6  w-full  lg:w-64">
           <div class="flex items-center mb-4">
-            <BsFileEarmarkPost className="text-3xl" />
-            <h5 class="ml-3 text-slate-800 text-sm font-semibold">
+            <BsFileEarmarkPost className="text-3xl dark:text-black" />
+            <h5 class="ml-3 text-slate-800 dark:text-black text-sm font-semibold">
               Number of Posts
             </h5>
           </div>
@@ -221,7 +221,7 @@ const AdminHome = () => {
           <div>
             <Link
               to={"/dashboard/forumPosts"}
-              class="text-slate-800 font-semibold text-sm hover:underline flex items-center"
+              class="text-slate-800 dark:text-black font-semibold text-sm hover:underline flex items-center"
             >
               See More
               <svg
@@ -243,8 +243,8 @@ const AdminHome = () => {
         </div>
         <div class="relative flex flex-col gap-4  my-6 bg-white shadow-sm border border-slate-200 rounded-lg  p-6  w-full  lg:w-64">
           <div class="flex items-center mb-4">
-            <MdUnsubscribe className="text-3xl" />
-            <h5 class="ml-3 text-slate-800 text-sm font-semibold">
+            <MdUnsubscribe className="text-3xl dark:text-black" />
+            <h5 class="ml-3 text-slate-800 dark:text-black text-sm font-semibold">
               Number of Subcribers
             </h5>
           </div>
@@ -254,7 +254,7 @@ const AdminHome = () => {
           <div>
             <Link
               to={"/dashboard/subscribers"}
-              class="text-slate-800 font-semibold text-sm hover:underline flex items-center"
+              class="text-slate-800 dark:text-black font-semibold text-sm hover:underline flex items-center"
             >
               See More
               <svg

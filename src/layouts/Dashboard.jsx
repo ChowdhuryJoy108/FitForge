@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   return (
     <div className="px-2 flex flex-col h-auto lg:flex-row min-h-screen">
-      <div className="bg-gray-800 w-full lg:w-64 lg:min-h-screen">
+      <div className="bg-gray-800 dark:bg-gray-600 w-full lg:w-64 lg:min-h-screen">
         <div className="p-4">
           {isAdmin && (
             <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
@@ -28,7 +28,7 @@ const Dashboard = () => {
           {isTrainer && (
             <h1 className="text-xl font-bold text-white">Trainer Dashboard</h1>
           )}
-          ,
+          
           {!isAdmin && !isTrainer && (
             <h1 className="text-xl font-bold text-white">User Dashboard</h1>
           )}
@@ -273,7 +273,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-8 bg-gray-100">
+      <div className="flex-1 p-8 bg-gray-100 dark:bg-gray-800 dark:text-white">
         <Outlet />
       </div>
     </div>

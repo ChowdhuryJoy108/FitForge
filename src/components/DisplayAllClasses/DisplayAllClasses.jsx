@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const TABLE_HEAD = ["ClassID", "Name", "Trainers", "Actions", ""];
 
@@ -45,7 +46,10 @@ const DisplayAllClasses = () => {
 
   return (
     <div>
-     {/* section title  */}
+      <SectionTitle
+        title={"All Classes"}
+        subtitle={"Showcasing your assigned Training Classes with details.."}
+      />
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

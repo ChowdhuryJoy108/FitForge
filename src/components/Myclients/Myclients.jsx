@@ -23,10 +23,10 @@ const Myclients = () => {
       return res.data;
     },
   });
-  console.log(clients);
+  
   return (
     <div>
-      <SectionTitle title={"Enrolled Clients"} subtitle={""} />
+      <SectionTitle title={"Enrolled Clients"} subtitle={"These are the clients who booked you as their trainer.."} />
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import UpdateSlotModal from "../UpdateSlotModal/UpdateSlotModal"; // Import the modal component
 import Swal from "sweetalert2";
+import SectionTitle from "../SectionTitle/SectionTitle";
 
 const TABLE_HEAD = ["Slot Name", "Slot Time", "Days", "Duration", ""];
 
@@ -75,6 +76,13 @@ const ManageSlots = () => {
 
   return (
     <div>
+      <SectionTitle
+        
+        title={"Manage Your Slots"}
+        subtitle={
+          "Manage Slots - Update Classes timelines and others information.."
+        }
+      />
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
@@ -186,7 +194,7 @@ const ManageSlots = () => {
         </table>
       </Card>
 
-      {/* Update Slot Modal */}
+    
 
       {isModalOpen && selectedSlot && (
         <UpdateSlotModal

@@ -11,7 +11,7 @@ const SectionTitle = ({ title, subtitle }) => {
       <Typography
         variant="h4"
         color="blue-gray"
-        className={`text-xl w-full md:text-4xl font-bold leading-tight lg:w-[800px] ${location.pathname === "/dashboard" ? 'dark:text-[#111111]' : 'dark:text-[#DEE4E7]'} `}
+        className={`text-xl w-full md:text-4xl font-bold leading-tight lg:w-[800px] dark:text-[#DEE4E7]`}
       >
         {title}
       </Typography>
