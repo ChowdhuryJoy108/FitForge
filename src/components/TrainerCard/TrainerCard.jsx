@@ -20,8 +20,6 @@ const TrainerCard = ({ trainer }) => {
     bio,
     yearsOfExperience,
     socialIcons,
-    availableSlots,
-    additionalInfo,
   } = trainer;
 
   return (
@@ -66,15 +64,16 @@ const TrainerCard = ({ trainer }) => {
           </div>
         </CardHeader>
         <CardBody className="mb-6 p-4 flex-1">
+          <Typography className="font-bold my-4">{bio}</Typography>
           <div className="grid gap-2 md:grid-cols-2">
             {specialization.map((expert, index) => (
               <Chip key={index} variant="ghost" value={expert} />
             ))}
           </div>
-          <Typography className="font-bold my-4">
+          {/* <Typography className="font-bold my-4">
             Years of Experience: {yearsOfExperience}
           </Typography>
-          <Typography className="font-bold my-4">Bio : {bio}</Typography>
+          <Typography className="font-bold my-4">Bio : {bio}</Typography> */}
         </CardBody>
         <CardFooter className="mt-auto">
           <Link to={`/trainer/${_id}`}>
