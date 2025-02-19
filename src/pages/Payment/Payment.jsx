@@ -16,7 +16,7 @@ const Payment = () => {
   const stripePromise = loadStripe(import.meta.env.VITE_payment_gateway_pk);
 
   return (
-    <div className="px-2">
+    <div className="px-2 py-16">
       <Helmet>
         <title>FitForge | Payment </title>
       </Helmet>

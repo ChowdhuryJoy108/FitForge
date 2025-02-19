@@ -48,8 +48,6 @@ const Users = () => {
 
   return (
     <>
-      <SectionTitle title={"Manage All Users"} subtitle={""} /> 
-
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

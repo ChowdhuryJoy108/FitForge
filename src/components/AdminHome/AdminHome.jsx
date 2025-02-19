@@ -73,7 +73,7 @@ const AdminHome = () => {
   return (
     <div>
       <div>
-        <SectionTitle title={"Admin Dashboard: Manage Users, Trainers, Transactions and more.."} subtitle={"Fitness Admin Dashboard: Manage Users, Trainers, and Transactions"} /> 
+        <SectionTitle title={"Manage Users, Trainers, Transactions and more.."} subtitle={"Fitness Admin Dashboard: Manage Users, Trainers, and Transactions"} /> 
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <div class="relative flex flex-col gap-4 my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-full p-6 lg:w-64">

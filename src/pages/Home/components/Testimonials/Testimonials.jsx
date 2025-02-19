@@ -35,7 +35,7 @@ const Testimonials = () => {
                   value={review.rating}
                   readOnly
                 />
-                <p className="py-8">{review.review}</p>
+                <p className="py-8 dark:text-[#DEE4E7]">{review.review}</p>
                 <h3 className="text-2xl text-orange-400">{review.name}</h3>
               </div>
             </SwiperSlide>

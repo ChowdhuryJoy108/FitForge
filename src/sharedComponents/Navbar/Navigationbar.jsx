@@ -11,6 +11,7 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import Logo from "../../assets/fitforge.png";
+import DarkModeToggle from "../DarkmodeToggle/DarkmodeToggle";
 const Navigationbar = () => {
   const [openNav, setOpenNav] = useState(false);
   const { user, logOut } = useAuth();
@@ -133,9 +134,10 @@ const Navigationbar = () => {
             <div className="mr-4 hidden lg:block">{navList}</div>
             {user ? (
               <div className="flex items-center gap-2 ">
-                <Typography className="hidden mr-4 cursor-pointer py-1.5 font-bold lg:block">
+                {/* <Typography className="hidden mr-4 cursor-pointer py-1.5 font-bold lg:block">
                   {user?.displayName}
-                </Typography>
+                </Typography> */}
+                <DarkModeToggle />
                 <Button
                   onClick={handleLogOut}
                   variant="gradient"
@@ -227,7 +229,7 @@ const Navigationbar = () => {
               <div className="flex items-center gap-x-1">
                 {" "}
                 <Link to={"/login"}>
-                  <Button fullWidth variant="text" size="sm" className="">
+                  <Button fullWidth variant="gradient" size="sm" className="">
                     <span>Log In</span>
                   </Button>
                 </Link>

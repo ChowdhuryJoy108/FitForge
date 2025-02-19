@@ -4,12 +4,12 @@ import { FaDumbbell, FaRunning, FaHeartbeat } from "react-icons/fa";
 
 const AboutUs = () => {
   return (
-    <section className="bg-gray-100 py-12 px-6 text-center">
+    <section className="bg-gray-100 py-12 px-6 text-center dark:bg-gray-800">
       <div className="container mx-auto">
-        <Typography variant="h2" color="blue-gray" className="font-bold mb-6">
+        <Typography variant="h2" color="blue-gray " className="font-bold mb-6 dark:text-[#DEE4E7]">
           About Us
         </Typography>
-        <Typography variant="paragraph" className="text-lg w-full text-gray-700 mb-8 lg:w-[800px] mx-auto">
+        <Typography variant="paragraph" className="text-lg w-full dark:text-gray-400 text-gray-700 mb-8 lg:w-[800px] mx-auto">
           We are committed to helping you achieve your fitness goals through
           expert coaching, tailored workouts, and a supportive community. Join
           us to take your health to the next level!

@@ -43,7 +43,7 @@ const Trainers = () => {
         <SectionTitle title={"Find Expert Fitness Trainers for Your Perfect Transformation"} subtitle={ "Personalized coaching to help you reach your fitness goals."} />
       </div>
       <div className="flex flex-col items-center">
-        <div className="w-full mb-8 max-w-sm lg:w-64">
+        <div className="w-full dark:hidden mb-8 max-w-sm lg:w-64">
           <Lottie animationData={TrainerLottie} />
         </div>
       </div>
@@ -56,7 +56,7 @@ const Trainers = () => {
         <button
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="px-3 py-1 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded mr-2"
+          className="px-3 py-1 dark:text-black bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded mr-2"
         >
           Previous
         </button>
@@ -66,7 +66,7 @@ const Trainers = () => {
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="px-3 py-1 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded"
+          className="px-3 py-1 dark:text-black bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded"
         >
           Next
         </button>

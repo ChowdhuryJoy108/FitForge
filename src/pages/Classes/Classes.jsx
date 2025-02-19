@@ -43,7 +43,7 @@ const Classes = () => {
       <SectionTitle title={"Transform Your Body with Expert-Led Fitness Classes"} subtitle={"Achieve your health goals through personalized training programs."}/>
     </div>
     <div className="flex flex-col items-center">
-        <div className="w-full max-w-sm lg:w-64">
+        <div className="dark:hidden w-full max-w-sm dark:text-white lg:w-64">
           <Lottie animationData={ClassLottie} />
         </div>
       </div>
@@ -62,12 +62,12 @@ const Classes = () => {
             ))}
           </div>
 
-          {/* Pagination */}
+     
           <div className="flex justify-center items-center mt-6">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="px-3 py-1 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded mr-2"
+              className="px-3 py-1 dark:text-black bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded mr-2"
             >
               Previous
             </button>
@@ -77,7 +77,7 @@ const Classes = () => {
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="px-3 py-1 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded"
+              className="px-3 py-1 dark:text-black bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 rounded"
             >
               Next
             </button>

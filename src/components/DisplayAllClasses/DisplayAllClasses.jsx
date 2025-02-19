@@ -45,7 +45,7 @@ const DisplayAllClasses = () => {
 
   return (
     <div>
-      this display all Classes for admin
+     {/* section title  */}
       <Card className="h-full w-full overflow-scroll">
         <table className="w-full min-w-max table-auto text-left">
           <thead>

@@ -27,7 +27,7 @@ const TrainerCard = ({ trainer }) => {
       <Card
         color="transparent"
         shadow={true}
-        className="px-2 w-full max-w-[26rem] h-full  flex flex-col justify-between "
+        className="px-2 w-full  max-w-[26rem] h-full  flex flex-col justify-between dark:bg-[#DEE4E7] "
       >
         <CardHeader
           color="transparent"
