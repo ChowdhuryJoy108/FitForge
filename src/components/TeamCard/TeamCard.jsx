@@ -5,9 +5,10 @@ import {
   Typography,
   Avatar,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 export function TeamCard({ team }) {
-  const { name, profileImage, bio } = team;
+  const { _id, name, profileImage, bio } = team;
   return (
     <Card
       shadow={false}
@@ -30,16 +31,18 @@ export function TeamCard({ team }) {
         >
           {bio}
         </Typography>
-        <Typography variant="h5" className="mb-4 text-gray-400">
-          {name}
-        </Typography>
-        <Avatar
-          size="xl"
-          variant="circular"
-          alt="tania andrew"
-          className="border-2 border-white"
-          src={profileImage}
-        />
+        <Link to={`/trainer/${_id}`}>
+          <Typography variant="h5" className="mb-4 text-gray-400">
+            {name}
+          </Typography>
+          <Avatar
+            size="xl"
+            variant="circular"
+            alt="tania andrew"
+            className="border-2 border-white"
+            src={profileImage}
+          />
+        </Link>
       </CardBody>
     </Card>
   );
