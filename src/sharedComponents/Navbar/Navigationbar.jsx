@@ -102,11 +102,11 @@ const Navigationbar = () => {
         </Typography>
       )}
     </ul>
-  );
+  ); 
   return (
-    <div className="-m-2 mb-4 max-h-[768px]">
+    <div className="-m-2 mb-[100px] max-h-[768px]">
       {" "}
-      <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
+      <Navbar className="fixed top-0 left-0 z-50  max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
         <div className="flex items-center justify-between text-blue-gray-900">
           <div className="flex items-center gap-2">
             <Link to={"/"}>
@@ -138,7 +138,7 @@ const Navigationbar = () => {
                 </Typography>
                 <Button
                   onClick={handleLogOut}
-                  variant="text"
+                  variant="gradient"
                   size="sm"
                   className="hidden lg:inline-block"
                 >
